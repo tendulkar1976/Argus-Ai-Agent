@@ -1,0 +1,10 @@
+.venv/
+.env
+.argus/
+__pycache__/
+.pytest_cache/
+node_modules/
+.next/
+out/
+*.tsbuildinfo
+test-results/
