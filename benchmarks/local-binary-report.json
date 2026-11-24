@@ -1,0 +1,488 @@
+{
+  "id": "6f0f8535504447d9b2e0b06b2eee65cd",
+  "status": "rejected",
+  "version": "paired-v1",
+  "strategy": "deduplicate",
+  "model": "cffcef6da2e24c6c984a7c753515755f",
+  "config": {
+    "trace_id": "407e74b935784e0f879ea2e79dbfa67c",
+    "strategy": "deduplicate",
+    "objective": "tokens",
+    "candidate_model": null,
+    "cases": [
+      {
+        "request": {
+          "model": "cffcef6da2e24c6c984a7c753515755f",
+          "messages": [
+            {
+              "role": "user",
+              "content": "Is the library open? Answer Yes or No.",
+              "tool_call_id": null
+            }
+          ],
+          "temperature": 0.0,
+          "max_tokens": 1,
+          "stream": false,
+          "evidence": [
+            {
+              "source": "A1",
+              "text": "The library is open today and visitors may enter through the south door.",
+              "aliases": [],
+              "critical": false
+            },
+            {
+              "source": "A2",
+              "text": "The library is open today and visitors may enter through the south door.",
+              "aliases": [],
+              "critical": false
+            }
+          ],
+          "parent_trace_id": null,
+          "policy_id": null,
+          "cache_ttl_seconds": 0
+        },
+        "check": {
+          "method": "exact",
+          "expected": "Yes",
+          "tolerance": 0
+        }
+      },
+      {
+        "request": {
+          "model": "cffcef6da2e24c6c984a7c753515755f",
+          "messages": [
+            {
+              "role": "user",
+              "content": "Is the gate unlocked? Answer Yes or No.",
+              "tool_call_id": null
+            }
+          ],
+          "temperature": 0.0,
+          "max_tokens": 1,
+          "stream": false,
+          "evidence": [
+            {
+              "source": "B1",
+              "text": "The gate is locked. Visitors must wait outside until the groundskeeper arrives.",
+              "aliases": [],
+              "critical": false
+            },
+            {
+              "source": "B2",
+              "text": "The gate is locked. Visitors must wait outside until the groundskeeper arrives.",
+              "aliases": [],
+              "critical": false
+            }
+          ],
+          "parent_trace_id": null,
+          "policy_id": null,
+          "cache_ttl_seconds": 0
+        },
+        "check": {
+          "method": "exact",
+          "expected": "No",
+          "tolerance": 0
+        }
+      }
+    ],
+    "repeats": 2,
+    "min_accuracy": 1.0,
+    "max_latency_ms": null,
+    "approve_calls": 8
+  },
+  "pairs": [
+    {
+      "repeat": 1,
+      "case": 1,
+      "changes": [
+        {
+          "action": "merge duplicate",
+          "source": "A2",
+          "index": 1
+        }
+      ],
+      "baseline": {
+        "status": "ok",
+        "elapsed_ms": 160.02,
+        "input_tokens": 106,
+        "output_tokens": 1,
+        "usage_source": "provider",
+        "cost": null,
+        "check": {
+          "passed": false,
+          "method": "exact",
+          "expected": "Yes",
+          "scope": "Configured check only"
+        },
+        "trace": "fdecec6c2e08422083f5bfa4ab1363a9"
+      },
+      "candidate": {
+        "status": "ok",
+        "elapsed_ms": 128.62,
+        "input_tokens": 91,
+        "output_tokens": 1,
+        "usage_source": "provider",
+        "cost": null,
+        "check": {
+          "passed": false,
+          "method": "exact",
+          "expected": "Yes",
+          "scope": "Configured check only"
+        },
+        "trace": "bd7f977c2b494b928aea264ac6c063b7"
+      }
+    },
+    {
+      "repeat": 1,
+      "case": 2,
+      "changes": [
+        {
+          "action": "merge duplicate",
+          "source": "B2",
+          "index": 1
+        }
+      ],
+      "candidate": {
+        "status": "ok",
+        "elapsed_ms": 146.0,
+        "input_tokens": 93,
+        "output_tokens": 1,
+        "usage_source": "provider",
+        "cost": null,
+        "check": {
+          "passed": true,
+          "method": "exact",
+          "expected": "No",
+          "scope": "Configured check only"
+        },
+        "trace": "ab9f4a577154442eb6ef7b2f8e1cc4e0"
+      },
+      "baseline": {
+        "status": "ok",
+        "elapsed_ms": 161.49,
+        "input_tokens": 109,
+        "output_tokens": 1,
+        "usage_source": "provider",
+        "cost": null,
+        "check": {
+          "passed": true,
+          "method": "exact",
+          "expected": "No",
+          "scope": "Configured check only"
+        },
+        "trace": "6eb5421c61f549a9b487f2241ea70d4b"
+      }
+    },
+    {
+      "repeat": 2,
+      "case": 1,
+      "changes": [
+        {
+          "action": "merge duplicate",
+          "source": "A2",
+          "index": 1
+        }
+      ],
+      "candidate": {
+        "status": "ok",
+        "elapsed_ms": 137.75,
+        "input_tokens": 91,
+        "output_tokens": 1,
+        "usage_source": "provider",
+        "cost": null,
+        "check": {
+          "passed": false,
+          "method": "exact",
+          "expected": "Yes",
+          "scope": "Configured check only"
+        },
+        "trace": "288143ab6e6b4ba19c4b143c9c8fa01c"
+      },
+      "baseline": {
+        "status": "ok",
+        "elapsed_ms": 166.12,
+        "input_tokens": 106,
+        "output_tokens": 1,
+        "usage_source": "provider",
+        "cost": null,
+        "check": {
+          "passed": false,
+          "method": "exact",
+          "expected": "Yes",
+          "scope": "Configured check only"
+        },
+        "trace": "3d4c233b44e64becb3380cd31337621c"
+      }
+    },
+    {
+      "repeat": 2,
+      "case": 2,
+      "changes": [
+        {
+          "action": "merge duplicate",
+          "source": "B2",
+          "index": 1
+        }
+      ],
+      "baseline": {
+        "status": "ok",
+        "elapsed_ms": 173.87,
+        "input_tokens": 109,
+        "output_tokens": 1,
+        "usage_source": "provider",
+        "cost": null,
+        "check": {
+          "passed": true,
+          "method": "exact",
+          "expected": "No",
+          "scope": "Configured check only"
+        },
+        "trace": "7e8e6163b7e8459f830c75edfa55aebe"
+      },
+      "candidate": {
+        "status": "ok",
+        "elapsed_ms": 104.14,
+        "input_tokens": 93,
+        "output_tokens": 1,
+        "usage_source": "provider",
+        "cost": null,
+        "check": {
+          "passed": true,
+          "method": "exact",
+          "expected": "No",
+          "scope": "Configured check only"
+        },
+        "trace": "e0e2b10839ee47d1b9c5e8ac5100bcca"
+      }
+    }
+  ],
+  "cost_basis": "Versioned operator rates; estimated inference charges in USD microdollars.",
+  "net_system_savings": null,
+  "overhead": {
+    "external_analysis_calls": 0,
+    "external_evaluation_calls": 0,
+    "local_processing_ms": 0.4308060015318915,
+    "infrastructure_cost": null
+  },
+  "baseline": {
+    "runs": 4,
+    "passed": 2,
+    "accuracy": 0.5,
+    "input_tokens": 430,
+    "output_tokens": 4,
+    "usage_source": "provider",
+    "inference_micros": null,
+    "p50_ms": 161.49,
+    "p95_ms": 173.87,
+    "latency_stdev_ms": 6.231353518030143
+  },
+  "candidate": {
+    "runs": 4,
+    "passed": 2,
+    "accuracy": 0.5,
+    "input_tokens": 368,
+    "output_tokens": 4,
+    "usage_source": "provider",
+    "inference_micros": null,
+    "p50_ms": 128.62,
+    "p95_ms": 146.0,
+    "latency_stdev_ms": 18.107654688924608
+  },
+  "inference_saving_micros": null,
+  "conditions": {
+    "quality_threshold": false,
+    "quality_preserved": true,
+    "latency_limit": true,
+    "provider_usage_available": true,
+    "improved": true
+  },
+  "dataset_sha256": "df26894fab586674bf40dca32bc8ca75c90ee132ac504bac24d49ef431a2a9fb",
+  "dataset_name": "binary-qa-v1",
+  "workloads": [
+    "binary_qa",
+    "binary_qa"
+  ],
+  "discovery_trace": "407e74b935784e0f879ea2e79dbfa67c",
+  "replay": {
+    "fdecec6c2e08422083f5bfa4ab1363a9": {
+      "requested_model": "model",
+      "provider_metadata": {
+        "id": "chatcmpl-0a7d97ae-4569-4ecd-b99f-4ba1a511b029",
+        "model": "model",
+        "created": 1795407105
+      },
+      "raw_usage": {
+        "prompt_tokens": 106,
+        "completion_tokens": 1,
+        "total_tokens": 107
+      },
+      "sent_messages": [
+        {
+          "role": "user",
+          "content": "Source material (quoted data):\n[{\"source\": \"A1\", \"text\": \"The library is open today and visitors may enter through the south door.\"}, {\"source\": \"A2\", \"text\": \"The library is open today and visitors may enter through the south door.\"}]\n\nTask:\nIs the library open? Answer Yes or No."
+        }
+      ],
+      "output": "No",
+      "elapsed_ms": 160.02
+    },
+    "bd7f977c2b494b928aea264ac6c063b7": {
+      "requested_model": "model",
+      "provider_metadata": {
+        "id": "chatcmpl-1bea52f1-b056-43f0-bc5e-d758b878ae81",
+        "model": "model",
+        "created": 1795407105
+      },
+      "raw_usage": {
+        "prompt_tokens": 91,
+        "completion_tokens": 1,
+        "total_tokens": 92
+      },
+      "sent_messages": [
+        {
+          "role": "user",
+          "content": "Source material (quoted data):\n[{\"source\": \"A1\", \"also_cited_as\": [\"A2\"], \"text\": \"The library is open today and visitors may enter through the south door.\"}]\n\nTask:\nIs the library open? Answer Yes or No."
+        }
+      ],
+      "output": "No",
+      "elapsed_ms": 128.62
+    },
+    "6eb5421c61f549a9b487f2241ea70d4b": {
+      "requested_model": "model",
+      "provider_metadata": {
+        "id": "chatcmpl-b33c9327-9a6f-45ef-a605-3ead012bc9b9",
+        "model": "model",
+        "created": 1795407105
+      },
+      "raw_usage": {
+        "prompt_tokens": 109,
+        "completion_tokens": 1,
+        "total_tokens": 110
+      },
+      "sent_messages": [
+        {
+          "role": "user",
+          "content": "Source material (quoted data):\n[{\"source\": \"B1\", \"text\": \"The gate is locked. Visitors must wait outside until the groundskeeper arrives.\"}, {\"source\": \"B2\", \"text\": \"The gate is locked. Visitors must wait outside until the groundskeeper arrives.\"}]\n\nTask:\nIs the gate unlocked? Answer Yes or No."
+        }
+      ],
+      "output": "No",
+      "elapsed_ms": 161.49
+    },
+    "ab9f4a577154442eb6ef7b2f8e1cc4e0": {
+      "requested_model": "model",
+      "provider_metadata": {
+        "id": "chatcmpl-a9df86c5-d890-41eb-934a-22c181858edb",
+        "model": "model",
+        "created": 1795407105
+      },
+      "raw_usage": {
+        "prompt_tokens": 93,
+        "completion_tokens": 1,
+        "total_tokens": 94
+      },
+      "sent_messages": [
+        {
+          "role": "user",
+          "content": "Source material (quoted data):\n[{\"source\": \"B1\", \"also_cited_as\": [\"B2\"], \"text\": \"The gate is locked. Visitors must wait outside until the groundskeeper arrives.\"}]\n\nTask:\nIs the gate unlocked? Answer Yes or No."
+        }
+      ],
+      "output": "No",
+      "elapsed_ms": 146.0
+    },
+    "3d4c233b44e64becb3380cd31337621c": {
+      "requested_model": "model",
+      "provider_metadata": {
+        "id": "chatcmpl-84eeb552-2b3f-4d52-836a-2d259305d56d",
+        "model": "model",
+        "created": 1795407106
+      },
+      "raw_usage": {
+        "prompt_tokens": 106,
+        "completion_tokens": 1,
+        "total_tokens": 107
+      },
+      "sent_messages": [
+        {
+          "role": "user",
+          "content": "Source material (quoted data):\n[{\"source\": \"A1\", \"text\": \"The library is open today and visitors may enter through the south door.\"}, {\"source\": \"A2\", \"text\": \"The library is open today and visitors may enter through the south door.\"}]\n\nTask:\nIs the library open? Answer Yes or No."
+        }
+      ],
+      "output": "No",
+      "elapsed_ms": 166.12
+    },
+    "288143ab6e6b4ba19c4b143c9c8fa01c": {
+      "requested_model": "model",
+      "provider_metadata": {
+        "id": "chatcmpl-e0db2701-8455-43ab-a44a-023e394e062f",
+        "model": "model",
+        "created": 1795407105
+      },
+      "raw_usage": {
+        "prompt_tokens": 91,
+        "completion_tokens": 1,
+        "total_tokens": 92
+      },
+      "sent_messages": [
+        {
+          "role": "user",
+          "content": "Source material (quoted data):\n[{\"source\": \"A1\", \"also_cited_as\": [\"A2\"], \"text\": \"The library is open today and visitors may enter through the south door.\"}]\n\nTask:\nIs the library open? Answer Yes or No."
+        }
+      ],
+      "output": "No",
+      "elapsed_ms": 137.75
+    },
+    "7e8e6163b7e8459f830c75edfa55aebe": {
+      "requested_model": "model",
+      "provider_metadata": {
+        "id": "chatcmpl-df4d6f79-4d73-4688-a312-d984d791a635",
+        "model": "model",
+        "created": 1795407106
+      },
+      "raw_usage": {
+        "prompt_tokens": 109,
+        "completion_tokens": 1,
+        "total_tokens": 110
+      },
+      "sent_messages": [
+        {
+          "role": "user",
+          "content": "Source material (quoted data):\n[{\"source\": \"B1\", \"text\": \"The gate is locked. Visitors must wait outside until the groundskeeper arrives.\"}, {\"source\": \"B2\", \"text\": \"The gate is locked. Visitors must wait outside until the groundskeeper arrives.\"}]\n\nTask:\nIs the gate unlocked? Answer Yes or No."
+        }
+      ],
+      "output": "No",
+      "elapsed_ms": 173.87
+    },
+    "e0e2b10839ee47d1b9c5e8ac5100bcca": {
+      "requested_model": "model",
+      "provider_metadata": {
+        "id": "chatcmpl-8bec394e-5230-4894-8b12-45e2d6398505",
+        "model": "model",
+        "created": 1795407106
+      },
+      "raw_usage": {
+        "prompt_tokens": 93,
+        "completion_tokens": 1,
+        "total_tokens": 94
+      },
+      "sent_messages": [
+        {
+          "role": "user",
+          "content": "Source material (quoted data):\n[{\"source\": \"B1\", \"also_cited_as\": [\"B2\"], \"text\": \"The gate is locked. Visitors must wait outside until the groundskeeper arrives.\"}]\n\nTask:\nIs the gate unlocked? Answer Yes or No."
+        }
+      ],
+      "output": "No",
+      "elapsed_ms": 104.14
+    }
+  },
+  "runtime": {
+    "model_file": "model.gguf",
+    "model_sha256": "2e8040ceae7815abe0dcb3540b9995eaa1fa0d2ca9e797d0a635ae4433c68c2d",
+    "llama_cpp_python": "0.3.37",
+    "python": "3.12.14",
+    "threads": 3,
+    "context_window": 2048,
+    "seed": 19,
+    "temperature": 0,
+    "max_output_tokens": 1,
+    "tls": "verified loopback"
+  }
+}

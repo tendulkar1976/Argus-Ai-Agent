@@ -1,0 +1,15 @@
+{
+  "name": "argus-starter-v1",
+  "description": "Hand-authored development benchmark. Discovery and evaluation tasks are disjoint. Three small cases demonstrate the machinery only.",
+  "strategy": "deduplicate",
+  "objective": "tokens",
+  "discovery": {
+    "task": "What is the project name? Answer using only the name.",
+    "evidence": [{"source":"D1","text":"The project name is Atlas."},{"source":"D2","text":"The project name is Atlas."}]
+  },
+  "cases": [
+    {"workload":"document_qa","task":"What color is the badge? Reply with the color only.","evidence":[{"source":"Q1","text":"The badge color is green. Each visitor receives a badge at the front desk."},{"source":"Q2","text":"The badge color is green. Each visitor receives a badge at the front desk."}],"check":{"method":"exact","expected":"green"}},
+    {"workload":"structured_extraction","task":"Return only a JSON object with the integer field quantity from the invoice.","evidence":[{"source":"I1","text":"Invoice 82 contains a quantity of 14. This quantity was verified by the receiving team."},{"source":"I2","text":"Invoice 82 contains a quantity of 14. This quantity was verified by the receiving team."}],"check":{"method":"json_fields","expected":"{\"quantity\":14}"}},
+    {"workload":"code_generation","task":"Write only a Python function named double that returns its integer argument multiplied by 2. Use one return statement.","evidence":[{"source":"C1","text":"The interface takes one integer and produces one integer. Both positive and negative values are allowed."},{"source":"C2","text":"The interface takes one integer and produces one integer. Both positive and negative values are allowed."}],"check":{"method":"integer_function","expected":"{\"function\":\"double\",\"tests\":[{\"args\":[3],\"returns\":6},{\"args\":[-2],\"returns\":-4},{\"args\":[0],\"returns\":0}]}"}}
+  ]
+}

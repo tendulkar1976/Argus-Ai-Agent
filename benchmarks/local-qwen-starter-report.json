@@ -1,0 +1,695 @@
+{
+  "id": "645422e040d3481b88048f70facfd975",
+  "status": "rejected",
+  "version": "paired-v1",
+  "strategy": "deduplicate",
+  "model": "08421780625e4d7dbeac0ffed203e024",
+  "config": {
+    "trace_id": "0a9a6db2b74b4293a71dd6b65e9ac57a",
+    "strategy": "deduplicate",
+    "objective": "tokens",
+    "cost_assumptions": null,
+    "candidate_model": null,
+    "cases": [
+      {
+        "request": {
+          "model": "08421780625e4d7dbeac0ffed203e024",
+          "messages": [
+            {
+              "role": "user",
+              "content": "What color is the badge? Reply with the color only.",
+              "tool_call_id": null
+            }
+          ],
+          "temperature": 0.0,
+          "max_tokens": 64,
+          "stream": false,
+          "evidence": [
+            {
+              "source": "Q1",
+              "text": "The badge color is green. Each visitor receives a badge at the front desk.",
+              "aliases": [],
+              "critical": false
+            },
+            {
+              "source": "Q2",
+              "text": "The badge color is green. Each visitor receives a badge at the front desk.",
+              "aliases": [],
+              "critical": false
+            }
+          ],
+          "parent_trace_id": null,
+          "policy_id": null,
+          "cache_ttl_seconds": 0
+        },
+        "check": {
+          "method": "exact",
+          "expected": "green",
+          "tolerance": 0
+        }
+      },
+      {
+        "request": {
+          "model": "08421780625e4d7dbeac0ffed203e024",
+          "messages": [
+            {
+              "role": "user",
+              "content": "Return only a JSON object with the integer field quantity from the invoice.",
+              "tool_call_id": null
+            }
+          ],
+          "temperature": 0.0,
+          "max_tokens": 64,
+          "stream": false,
+          "evidence": [
+            {
+              "source": "I1",
+              "text": "Invoice 82 contains a quantity of 14. This quantity was verified by the receiving team.",
+              "aliases": [],
+              "critical": false
+            },
+            {
+              "source": "I2",
+              "text": "Invoice 82 contains a quantity of 14. This quantity was verified by the receiving team.",
+              "aliases": [],
+              "critical": false
+            }
+          ],
+          "parent_trace_id": null,
+          "policy_id": null,
+          "cache_ttl_seconds": 0
+        },
+        "check": {
+          "method": "json_fields",
+          "expected": "{\"quantity\":14}",
+          "tolerance": 0
+        }
+      },
+      {
+        "request": {
+          "model": "08421780625e4d7dbeac0ffed203e024",
+          "messages": [
+            {
+              "role": "user",
+              "content": "Write only a Python function named double that returns its integer argument multiplied by 2. Use one return statement.",
+              "tool_call_id": null
+            }
+          ],
+          "temperature": 0.0,
+          "max_tokens": 64,
+          "stream": false,
+          "evidence": [
+            {
+              "source": "C1",
+              "text": "The interface takes one integer and produces one integer. Both positive and negative values are allowed.",
+              "aliases": [],
+              "critical": false
+            },
+            {
+              "source": "C2",
+              "text": "The interface takes one integer and produces one integer. Both positive and negative values are allowed.",
+              "aliases": [],
+              "critical": false
+            }
+          ],
+          "parent_trace_id": null,
+          "policy_id": null,
+          "cache_ttl_seconds": 0
+        },
+        "check": {
+          "method": "integer_function",
+          "expected": "{\"function\":\"double\",\"tests\":[{\"args\":[3],\"returns\":6},{\"args\":[-2],\"returns\":-4},{\"args\":[0],\"returns\":0}]}",
+          "tolerance": 0
+        }
+      }
+    ],
+    "repeats": 2,
+    "min_accuracy": 1.0,
+    "max_latency_ms": null,
+    "approve_calls": 12
+  },
+  "pairs": [
+    {
+      "repeat": 1,
+      "case": 1,
+      "changes": [
+        {
+          "action": "merge duplicate",
+          "source": "Q2",
+          "index": 1
+        }
+      ],
+      "baseline": {
+        "status": "ok",
+        "elapsed_ms": 636.33,
+        "input_tokens": 107,
+        "output_tokens": 1,
+        "usage_source": "provider",
+        "cost": null,
+        "check": {
+          "passed": true,
+          "method": "exact",
+          "expected": "green",
+          "scope": "Configured check only"
+        },
+        "trace": "a91766228c64492eb7301d8acedc5724"
+      },
+      "candidate": {
+        "status": "ok",
+        "elapsed_ms": 269.82,
+        "input_tokens": 89,
+        "output_tokens": 1,
+        "usage_source": "provider",
+        "cost": null,
+        "check": {
+          "passed": true,
+          "method": "exact",
+          "expected": "green",
+          "scope": "Configured check only"
+        },
+        "trace": "3f105d7b9d894206bcd874a30d934fc7"
+      }
+    },
+    {
+      "repeat": 1,
+      "case": 2,
+      "changes": [
+        {
+          "action": "merge duplicate",
+          "source": "I2",
+          "index": 1
+        }
+      ],
+      "candidate": {
+        "status": "ok",
+        "elapsed_ms": 709.37,
+        "input_tokens": 96,
+        "output_tokens": 21,
+        "usage_source": "provider",
+        "cost": null,
+        "check": {
+          "passed": false,
+          "method": "json_fields",
+          "expected": "{\"quantity\":14}",
+          "scope": "Configured check only"
+        },
+        "trace": "ebb85ffff16446adb9cc45e2f5b76de7"
+      },
+      "baseline": {
+        "status": "ok",
+        "elapsed_ms": 790.26,
+        "input_tokens": 119,
+        "output_tokens": 21,
+        "usage_source": "provider",
+        "cost": null,
+        "check": {
+          "passed": false,
+          "method": "json_fields",
+          "expected": "{\"quantity\":14}",
+          "scope": "Configured check only"
+        },
+        "trace": "a1c0e08588f54b35a7d7efe244359f03"
+      }
+    },
+    {
+      "repeat": 1,
+      "case": 3,
+      "changes": [
+        {
+          "action": "merge duplicate",
+          "source": "C2",
+          "index": 1
+        }
+      ],
+      "baseline": {
+        "status": "ok",
+        "elapsed_ms": 697.05,
+        "input_tokens": 121,
+        "output_tokens": 15,
+        "usage_source": "provider",
+        "cost": null,
+        "check": {
+          "passed": true,
+          "method": "integer_function",
+          "expected": "{\"function\":\"double\",\"tests\":[{\"args\":[3],\"returns\":6},{\"args\":[-2],\"returns\":-4},{\"args\":[0],\"returns\":0}]}",
+          "scope": "Configured check only"
+        },
+        "trace": "0f5c4e9279a14b1b84bbdcde943e98fc"
+      },
+      "candidate": {
+        "status": "ok",
+        "elapsed_ms": 577.75,
+        "input_tokens": 101,
+        "output_tokens": 15,
+        "usage_source": "provider",
+        "cost": null,
+        "check": {
+          "passed": true,
+          "method": "integer_function",
+          "expected": "{\"function\":\"double\",\"tests\":[{\"args\":[3],\"returns\":6},{\"args\":[-2],\"returns\":-4},{\"args\":[0],\"returns\":0}]}",
+          "scope": "Configured check only"
+        },
+        "trace": "7a469cf00ee3467ea96fc847a0f26f55"
+      }
+    },
+    {
+      "repeat": 2,
+      "case": 1,
+      "changes": [
+        {
+          "action": "merge duplicate",
+          "source": "Q2",
+          "index": 1
+        }
+      ],
+      "candidate": {
+        "status": "ok",
+        "elapsed_ms": 281.14,
+        "input_tokens": 89,
+        "output_tokens": 1,
+        "usage_source": "provider",
+        "cost": null,
+        "check": {
+          "passed": true,
+          "method": "exact",
+          "expected": "green",
+          "scope": "Configured check only"
+        },
+        "trace": "e38395c36367418989a20eff392dfef8"
+      },
+      "baseline": {
+        "status": "ok",
+        "elapsed_ms": 410.55,
+        "input_tokens": 107,
+        "output_tokens": 1,
+        "usage_source": "provider",
+        "cost": null,
+        "check": {
+          "passed": true,
+          "method": "exact",
+          "expected": "green",
+          "scope": "Configured check only"
+        },
+        "trace": "70105ddb2fb04163b08feb30ff5f57e5"
+      }
+    },
+    {
+      "repeat": 2,
+      "case": 2,
+      "changes": [
+        {
+          "action": "merge duplicate",
+          "source": "I2",
+          "index": 1
+        }
+      ],
+      "baseline": {
+        "status": "ok",
+        "elapsed_ms": 1032.97,
+        "input_tokens": 119,
+        "output_tokens": 21,
+        "usage_source": "provider",
+        "cost": null,
+        "check": {
+          "passed": false,
+          "method": "json_fields",
+          "expected": "{\"quantity\":14}",
+          "scope": "Configured check only"
+        },
+        "trace": "d90a49b0c7f945eab7f6d37d15b64e02"
+      },
+      "candidate": {
+        "status": "ok",
+        "elapsed_ms": 705.81,
+        "input_tokens": 96,
+        "output_tokens": 21,
+        "usage_source": "provider",
+        "cost": null,
+        "check": {
+          "passed": false,
+          "method": "json_fields",
+          "expected": "{\"quantity\":14}",
+          "scope": "Configured check only"
+        },
+        "trace": "84cf49b44fcb4e129718e05dd95a88af"
+      }
+    },
+    {
+      "repeat": 2,
+      "case": 3,
+      "changes": [
+        {
+          "action": "merge duplicate",
+          "source": "C2",
+          "index": 1
+        }
+      ],
+      "candidate": {
+        "status": "ok",
+        "elapsed_ms": 594.35,
+        "input_tokens": 101,
+        "output_tokens": 15,
+        "usage_source": "provider",
+        "cost": null,
+        "check": {
+          "passed": true,
+          "method": "integer_function",
+          "expected": "{\"function\":\"double\",\"tests\":[{\"args\":[3],\"returns\":6},{\"args\":[-2],\"returns\":-4},{\"args\":[0],\"returns\":0}]}",
+          "scope": "Configured check only"
+        },
+        "trace": "c6baab29aef241149a3af9a5d9596e0e"
+      },
+      "baseline": {
+        "status": "ok",
+        "elapsed_ms": 700.52,
+        "input_tokens": 121,
+        "output_tokens": 15,
+        "usage_source": "provider",
+        "cost": null,
+        "check": {
+          "passed": true,
+          "method": "integer_function",
+          "expected": "{\"function\":\"double\",\"tests\":[{\"args\":[3],\"returns\":6},{\"args\":[-2],\"returns\":-4},{\"args\":[0],\"returns\":0}]}",
+          "scope": "Configured check only"
+        },
+        "trace": "f8cc7afe241945ef86fbe3649e84c730"
+      }
+    }
+  ],
+  "cost_basis": "Versioned operator rates; estimated inference charges in USD microdollars.",
+  "net_system_savings": null,
+  "overhead": {
+    "external_analysis_calls": 0,
+    "external_evaluation_calls": 0,
+    "local_processing_ms": 1.4482260021395632,
+    "transform_ms": 0.689835001139727,
+    "infrastructure_cost": null
+  },
+  "rollout_cost_scenario": null,
+  "baseline": {
+    "runs": 6,
+    "passed": 4,
+    "accuracy": 0.6666666666666666,
+    "input_tokens": 694,
+    "output_tokens": 74,
+    "usage_source": "provider",
+    "inference_micros": null,
+    "p50_ms": 697.05,
+    "p95_ms": 1032.97,
+    "latency_stdev_ms": 203.02541831012195
+  },
+  "candidate": {
+    "runs": 6,
+    "passed": 4,
+    "accuracy": 0.6666666666666666,
+    "input_tokens": 572,
+    "output_tokens": 74,
+    "usage_source": "provider",
+    "inference_micros": null,
+    "p50_ms": 577.75,
+    "p95_ms": 709.37,
+    "latency_stdev_ms": 199.41816386678522
+  },
+  "inference_saving_micros": null,
+  "conditions": {
+    "quality_threshold": false,
+    "quality_preserved": true,
+    "latency_limit": true,
+    "provider_usage_available": true,
+    "improved": true
+  },
+  "dataset_sha256": "653ba9dcc0c1214717f73c0c8ad18b303e21e591517af8a2ced7a57c40775335",
+  "dataset_name": "argus-starter-v1",
+  "workloads": [
+    "document_qa",
+    "structured_extraction",
+    "code_generation"
+  ],
+  "discovery_trace": "0a9a6db2b74b4293a71dd6b65e9ac57a",
+  "replay": {
+    "a91766228c64492eb7301d8acedc5724": {
+      "requested_model": "qwen2.5-0.5b-instruct-q4_k_m",
+      "provider_metadata": {
+        "id": "chatcmpl-fd16b680-e84d-4636-b6a2-6d4fc0a7151f",
+        "model": "qwen2.5-0.5b-instruct-q4_k_m",
+        "created": 1795407234
+      },
+      "raw_usage": {
+        "prompt_tokens": 107,
+        "completion_tokens": 1,
+        "total_tokens": 108
+      },
+      "sent_messages": [
+        {
+          "role": "user",
+          "content": "Source material (quoted data):\n[{\"source\": \"Q1\", \"text\": \"The badge color is green. Each visitor receives a badge at the front desk.\"}, {\"source\": \"Q2\", \"text\": \"The badge color is green. Each visitor receives a badge at the front desk.\"}]\n\nTask:\nWhat color is the badge? Reply with the color only."
+        }
+      ],
+      "output": "green",
+      "elapsed_ms": 636.33
+    },
+    "3f105d7b9d894206bcd874a30d934fc7": {
+      "requested_model": "qwen2.5-0.5b-instruct-q4_k_m",
+      "provider_metadata": {
+        "id": "chatcmpl-10168ebf-4696-4dca-8647-648ff574f882",
+        "model": "qwen2.5-0.5b-instruct-q4_k_m",
+        "created": 1795407235
+      },
+      "raw_usage": {
+        "prompt_tokens": 89,
+        "completion_tokens": 1,
+        "total_tokens": 90
+      },
+      "sent_messages": [
+        {
+          "role": "user",
+          "content": "Source material (quoted data):\n[{\"source\": \"Q1\", \"also_cited_as\": [\"Q2\"], \"text\": \"The badge color is green. Each visitor receives a badge at the front desk.\"}]\n\nTask:\nWhat color is the badge? Reply with the color only."
+        }
+      ],
+      "output": "green",
+      "elapsed_ms": 269.82
+    },
+    "a1c0e08588f54b35a7d7efe244359f03": {
+      "requested_model": "qwen2.5-0.5b-instruct-q4_k_m",
+      "provider_metadata": {
+        "id": "chatcmpl-d6c2dd65-155e-4c16-9981-40addd22bde6",
+        "model": "qwen2.5-0.5b-instruct-q4_k_m",
+        "created": 1795407236
+      },
+      "raw_usage": {
+        "prompt_tokens": 119,
+        "completion_tokens": 21,
+        "total_tokens": 140
+      },
+      "sent_messages": [
+        {
+          "role": "user",
+          "content": "Source material (quoted data):\n[{\"source\": \"I1\", \"text\": \"Invoice 82 contains a quantity of 14. This quantity was verified by the receiving team.\"}, {\"source\": \"I2\", \"text\": \"Invoice 82 contains a quantity of 14. This quantity was verified by the receiving team.\"}]\n\nTask:\nReturn only a JSON object with the integer field quantity from the invoice."
+        }
+      ],
+      "output": "```json\n{\n  \"invoice\": {\n    \"quantity\": 14\n  }\n}\n```",
+      "elapsed_ms": 790.26
+    },
+    "ebb85ffff16446adb9cc45e2f5b76de7": {
+      "requested_model": "qwen2.5-0.5b-instruct-q4_k_m",
+      "provider_metadata": {
+        "id": "chatcmpl-0431d75b-30f1-41ed-b16f-6d3e02703a6a",
+        "model": "qwen2.5-0.5b-instruct-q4_k_m",
+        "created": 1795407235
+      },
+      "raw_usage": {
+        "prompt_tokens": 96,
+        "completion_tokens": 21,
+        "total_tokens": 117
+      },
+      "sent_messages": [
+        {
+          "role": "user",
+          "content": "Source material (quoted data):\n[{\"source\": \"I1\", \"also_cited_as\": [\"I2\"], \"text\": \"Invoice 82 contains a quantity of 14. This quantity was verified by the receiving team.\"}]\n\nTask:\nReturn only a JSON object with the integer field quantity from the invoice."
+        }
+      ],
+      "output": "```json\n{\n  \"invoice\": {\n    \"quantity\": 14\n  }\n}\n```",
+      "elapsed_ms": 709.37
+    },
+    "0f5c4e9279a14b1b84bbdcde943e98fc": {
+      "requested_model": "qwen2.5-0.5b-instruct-q4_k_m",
+      "provider_metadata": {
+        "id": "chatcmpl-080bebcf-2d8b-4237-8ece-cb86dcfac369",
+        "model": "qwen2.5-0.5b-instruct-q4_k_m",
+        "created": 1795407237
+      },
+      "raw_usage": {
+        "prompt_tokens": 121,
+        "completion_tokens": 15,
+        "total_tokens": 136
+      },
+      "sent_messages": [
+        {
+          "role": "user",
+          "content": "Source material (quoted data):\n[{\"source\": \"C1\", \"text\": \"The interface takes one integer and produces one integer. Both positive and negative values are allowed.\"}, {\"source\": \"C2\", \"text\": \"The interface takes one integer and produces one integer. Both positive and negative values are allowed.\"}]\n\nTask:\nWrite only a Python function named double that returns its integer argument multiplied by 2. Use one return statement."
+        }
+      ],
+      "output": "```python\ndef double(x):\n    return x * 2\n```",
+      "elapsed_ms": 697.05
+    },
+    "7a469cf00ee3467ea96fc847a0f26f55": {
+      "requested_model": "qwen2.5-0.5b-instruct-q4_k_m",
+      "provider_metadata": {
+        "id": "chatcmpl-5b920da7-1caf-4c96-99e2-7ae1d8a8d80e",
+        "model": "qwen2.5-0.5b-instruct-q4_k_m",
+        "created": 1795407238
+      },
+      "raw_usage": {
+        "prompt_tokens": 101,
+        "completion_tokens": 15,
+        "total_tokens": 116
+      },
+      "sent_messages": [
+        {
+          "role": "user",
+          "content": "Source material (quoted data):\n[{\"source\": \"C1\", \"also_cited_as\": [\"C2\"], \"text\": \"The interface takes one integer and produces one integer. Both positive and negative values are allowed.\"}]\n\nTask:\nWrite only a Python function named double that returns its integer argument multiplied by 2. Use one return statement."
+        }
+      ],
+      "output": "```python\ndef double(x):\n    return x * 2\n```",
+      "elapsed_ms": 577.75
+    },
+    "70105ddb2fb04163b08feb30ff5f57e5": {
+      "requested_model": "qwen2.5-0.5b-instruct-q4_k_m",
+      "provider_metadata": {
+        "id": "chatcmpl-055b500f-a300-4a60-bc93-1cf68c21ec50",
+        "model": "qwen2.5-0.5b-instruct-q4_k_m",
+        "created": 1795407238
+      },
+      "raw_usage": {
+        "prompt_tokens": 107,
+        "completion_tokens": 1,
+        "total_tokens": 108
+      },
+      "sent_messages": [
+        {
+          "role": "user",
+          "content": "Source material (quoted data):\n[{\"source\": \"Q1\", \"text\": \"The badge color is green. Each visitor receives a badge at the front desk.\"}, {\"source\": \"Q2\", \"text\": \"The badge color is green. Each visitor receives a badge at the front desk.\"}]\n\nTask:\nWhat color is the badge? Reply with the color only."
+        }
+      ],
+      "output": "green",
+      "elapsed_ms": 410.55
+    },
+    "e38395c36367418989a20eff392dfef8": {
+      "requested_model": "qwen2.5-0.5b-instruct-q4_k_m",
+      "provider_metadata": {
+        "id": "chatcmpl-ba4e6e87-2736-429c-9d09-0029820204cf",
+        "model": "qwen2.5-0.5b-instruct-q4_k_m",
+        "created": 1795407238
+      },
+      "raw_usage": {
+        "prompt_tokens": 89,
+        "completion_tokens": 1,
+        "total_tokens": 90
+      },
+      "sent_messages": [
+        {
+          "role": "user",
+          "content": "Source material (quoted data):\n[{\"source\": \"Q1\", \"also_cited_as\": [\"Q2\"], \"text\": \"The badge color is green. Each visitor receives a badge at the front desk.\"}]\n\nTask:\nWhat color is the badge? Reply with the color only."
+        }
+      ],
+      "output": "green",
+      "elapsed_ms": 281.14
+    },
+    "d90a49b0c7f945eab7f6d37d15b64e02": {
+      "requested_model": "qwen2.5-0.5b-instruct-q4_k_m",
+      "provider_metadata": {
+        "id": "chatcmpl-fcbc2609-2c38-4b98-8b18-35f327e60fa9",
+        "model": "qwen2.5-0.5b-instruct-q4_k_m",
+        "created": 1795407239
+      },
+      "raw_usage": {
+        "prompt_tokens": 119,
+        "completion_tokens": 21,
+        "total_tokens": 140
+      },
+      "sent_messages": [
+        {
+          "role": "user",
+          "content": "Source material (quoted data):\n[{\"source\": \"I1\", \"text\": \"Invoice 82 contains a quantity of 14. This quantity was verified by the receiving team.\"}, {\"source\": \"I2\", \"text\": \"Invoice 82 contains a quantity of 14. This quantity was verified by the receiving team.\"}]\n\nTask:\nReturn only a JSON object with the integer field quantity from the invoice."
+        }
+      ],
+      "output": "```json\n{\n  \"invoice\": {\n    \"quantity\": 14\n  }\n}\n```",
+      "elapsed_ms": 1032.97
+    },
+    "84cf49b44fcb4e129718e05dd95a88af": {
+      "requested_model": "qwen2.5-0.5b-instruct-q4_k_m",
+      "provider_metadata": {
+        "id": "chatcmpl-de27430d-4c31-4ec5-ad6c-d9fda62071f4",
+        "model": "qwen2.5-0.5b-instruct-q4_k_m",
+        "created": 1795407240
+      },
+      "raw_usage": {
+        "prompt_tokens": 96,
+        "completion_tokens": 21,
+        "total_tokens": 117
+      },
+      "sent_messages": [
+        {
+          "role": "user",
+          "content": "Source material (quoted data):\n[{\"source\": \"I1\", \"also_cited_as\": [\"I2\"], \"text\": \"Invoice 82 contains a quantity of 14. This quantity was verified by the receiving team.\"}]\n\nTask:\nReturn only a JSON object with the integer field quantity from the invoice."
+        }
+      ],
+      "output": "```json\n{\n  \"invoice\": {\n    \"quantity\": 14\n  }\n}\n```",
+      "elapsed_ms": 705.81
+    },
+    "f8cc7afe241945ef86fbe3649e84c730": {
+      "requested_model": "qwen2.5-0.5b-instruct-q4_k_m",
+      "provider_metadata": {
+        "id": "chatcmpl-6fde5945-a4a4-4b04-8ba7-5379d74eadb3",
+        "model": "qwen2.5-0.5b-instruct-q4_k_m",
+        "created": 1795407241
+      },
+      "raw_usage": {
+        "prompt_tokens": 121,
+        "completion_tokens": 15,
+        "total_tokens": 136
+      },
+      "sent_messages": [
+        {
+          "role": "user",
+          "content": "Source material (quoted data):\n[{\"source\": \"C1\", \"text\": \"The interface takes one integer and produces one integer. Both positive and negative values are allowed.\"}, {\"source\": \"C2\", \"text\": \"The interface takes one integer and produces one integer. Both positive and negative values are allowed.\"}]\n\nTask:\nWrite only a Python function named double that returns its integer argument multiplied by 2. Use one return statement."
+        }
+      ],
+      "output": "```python\ndef double(x):\n    return x * 2\n```",
+      "elapsed_ms": 700.52
+    },
+    "c6baab29aef241149a3af9a5d9596e0e": {
+      "requested_model": "qwen2.5-0.5b-instruct-q4_k_m",
+      "provider_metadata": {
+        "id": "chatcmpl-5f035bfe-df9e-483a-a7da-c44accfeb089",
+        "model": "qwen2.5-0.5b-instruct-q4_k_m",
+        "created": 1795407241
+      },
+      "raw_usage": {
+        "prompt_tokens": 101,
+        "completion_tokens": 15,
+        "total_tokens": 116
+      },
+      "sent_messages": [
+        {
+          "role": "user",
+          "content": "Source material (quoted data):\n[{\"source\": \"C1\", \"also_cited_as\": [\"C2\"], \"text\": \"The interface takes one integer and produces one integer. Both positive and negative values are allowed.\"}]\n\nTask:\nWrite only a Python function named double that returns its integer argument multiplied by 2. Use one return statement."
+        }
+      ],
+      "output": "```python\ndef double(x):\n    return x * 2\n```",
+      "elapsed_ms": 594.35
+    }
+  },
+  "runtime": {
+    "model_file": "qwen2.5-0.5b-instruct-q4_k_m.gguf",
+    "model_sha256": "74a4da8c9fdbcd15bd1f6d01d621410d31c6fc00986f5eb687824e7b93d7a9db",
+    "llama_cpp_python": "0.3.37",
+    "python": "3.12.14",
+    "threads": 3,
+    "context_window": 2048,
+    "seed": 19,
+    "temperature": 0,
+    "max_output_tokens": 64,
+    "tls": "verified loopback"
+  }
+}

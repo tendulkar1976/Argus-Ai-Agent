@@ -1,0 +1,712 @@
+{
+  "id": "cf98a751094d4516ad0d26f5c90c47ae",
+  "status": "eligible",
+  "version": "paired-v2",
+  "strategy": "deduplicate",
+  "model": "bab291edc97f4d1b8cc4abf44656a251",
+  "config": {
+    "trace_id": "e86dfdf871264abcb5cbeea1a1e3dd91",
+    "strategy": "deduplicate",
+    "objective": "tokens",
+    "cost_assumptions": null,
+    "candidate_model": null,
+    "cases": [
+      {
+        "request": {
+          "model": "bab291edc97f4d1b8cc4abf44656a251",
+          "messages": [
+            {
+              "role": "user",
+              "content": "Write only a Python function named square that returns its integer argument multiplied by itself. Use one return statement.",
+              "tool_call_id": null
+            }
+          ],
+          "temperature": 0.0,
+          "max_tokens": 64,
+          "stream": false,
+          "evidence": [
+            {
+              "source": "S1",
+              "text": "The interface accepts one integer and returns one integer. The input may have either sign.",
+              "aliases": [],
+              "critical": false
+            },
+            {
+              "source": "S2",
+              "text": "The interface accepts one integer and returns one integer. The input may have either sign.",
+              "aliases": [],
+              "critical": false
+            }
+          ],
+          "parent_trace_id": null,
+          "policy_id": null,
+          "cache_ttl_seconds": 0
+        },
+        "check": {
+          "method": "integer_function",
+          "expected": "{\"function\":\"square\",\"tests\":[{\"args\":[-3],\"returns\":9},{\"args\":[4],\"returns\":16},{\"args\":[0],\"returns\":0}]}",
+          "tolerance": 0
+        }
+      },
+      {
+        "request": {
+          "model": "bab291edc97f4d1b8cc4abf44656a251",
+          "messages": [
+            {
+              "role": "user",
+              "content": "Write only a Python function named subtract that returns its first integer argument minus its second. Use one return statement.",
+              "tool_call_id": null
+            }
+          ],
+          "temperature": 0.0,
+          "max_tokens": 64,
+          "stream": false,
+          "evidence": [
+            {
+              "source": "T1",
+              "text": "The interface takes two integers and returns one integer. Preserve the order of the supplied arguments.",
+              "aliases": [],
+              "critical": false
+            },
+            {
+              "source": "T2",
+              "text": "The interface takes two integers and returns one integer. Preserve the order of the supplied arguments.",
+              "aliases": [],
+              "critical": false
+            }
+          ],
+          "parent_trace_id": null,
+          "policy_id": null,
+          "cache_ttl_seconds": 0
+        },
+        "check": {
+          "method": "integer_function",
+          "expected": "{\"function\":\"subtract\",\"tests\":[{\"args\":[3,5],\"returns\":-2},{\"args\":[-2,-7],\"returns\":5},{\"args\":[9,9],\"returns\":0}]}",
+          "tolerance": 0
+        }
+      },
+      {
+        "request": {
+          "model": "bab291edc97f4d1b8cc4abf44656a251",
+          "messages": [
+            {
+              "role": "user",
+              "content": "Write only a Python function named triple that returns its integer argument multiplied by 3. Use one return statement.",
+              "tool_call_id": null
+            }
+          ],
+          "temperature": 0.0,
+          "max_tokens": 64,
+          "stream": false,
+          "evidence": [
+            {
+              "source": "U1",
+              "text": "The caller supplies a signed integer. The return value must be an integer for both positive and negative inputs.",
+              "aliases": [],
+              "critical": false
+            },
+            {
+              "source": "U2",
+              "text": "The caller supplies a signed integer. The return value must be an integer for both positive and negative inputs.",
+              "aliases": [],
+              "critical": false
+            }
+          ],
+          "parent_trace_id": null,
+          "policy_id": null,
+          "cache_ttl_seconds": 0
+        },
+        "check": {
+          "method": "integer_function",
+          "expected": "{\"function\":\"triple\",\"tests\":[{\"args\":[7],\"returns\":21},{\"args\":[-3],\"returns\":-9},{\"args\":[0],\"returns\":0}]}",
+          "tolerance": 0
+        }
+      }
+    ],
+    "repeats": 2,
+    "min_accuracy": 1.0,
+    "max_latency_ms": null,
+    "approve_calls": 12
+  },
+  "pairs": [
+    {
+      "repeat": 1,
+      "case": 1,
+      "changes": [
+        {
+          "action": "merge duplicate",
+          "source": "S2",
+          "index": 1
+        }
+      ],
+      "baseline": {
+        "status": "ok",
+        "elapsed_ms": 670.95,
+        "input_tokens": 118,
+        "output_tokens": 14,
+        "usage_source": "provider",
+        "cost": null,
+        "check": {
+          "passed": true,
+          "method": "integer_function",
+          "expected": "{\"function\":\"square\",\"tests\":[{\"args\":[-3],\"returns\":9},{\"args\":[4],\"returns\":16},{\"args\":[0],\"returns\":0}]}",
+          "scope": "Configured check only"
+        },
+        "trace": "4c99202e49774b8884d4fa34ae57e11a"
+      },
+      "candidate": {
+        "status": "ok",
+        "elapsed_ms": 673.29,
+        "input_tokens": 99,
+        "output_tokens": 14,
+        "usage_source": "provider",
+        "cost": null,
+        "check": {
+          "passed": true,
+          "method": "integer_function",
+          "expected": "{\"function\":\"square\",\"tests\":[{\"args\":[-3],\"returns\":9},{\"args\":[4],\"returns\":16},{\"args\":[0],\"returns\":0}]}",
+          "scope": "Configured check only"
+        },
+        "trace": "0c4559fd2767455da37c5113e5ba0488"
+      }
+    },
+    {
+      "repeat": 1,
+      "case": 2,
+      "changes": [
+        {
+          "action": "merge duplicate",
+          "source": "T2",
+          "index": 1
+        }
+      ],
+      "candidate": {
+        "status": "ok",
+        "elapsed_ms": 705.21,
+        "input_tokens": 101,
+        "output_tokens": 16,
+        "usage_source": "provider",
+        "cost": null,
+        "check": {
+          "passed": true,
+          "method": "integer_function",
+          "expected": "{\"function\":\"subtract\",\"tests\":[{\"args\":[3,5],\"returns\":-2},{\"args\":[-2,-7],\"returns\":5},{\"args\":[9,9],\"returns\":0}]}",
+          "scope": "Configured check only"
+        },
+        "trace": "97beec03544d452aa18c2ce72bde7372"
+      },
+      "baseline": {
+        "status": "ok",
+        "elapsed_ms": 741.42,
+        "input_tokens": 121,
+        "output_tokens": 16,
+        "usage_source": "provider",
+        "cost": null,
+        "check": {
+          "passed": true,
+          "method": "integer_function",
+          "expected": "{\"function\":\"subtract\",\"tests\":[{\"args\":[3,5],\"returns\":-2},{\"args\":[-2,-7],\"returns\":5},{\"args\":[9,9],\"returns\":0}]}",
+          "scope": "Configured check only"
+        },
+        "trace": "4b4201c5a3c9417aaf176558b2a9bcec"
+      }
+    },
+    {
+      "repeat": 1,
+      "case": 3,
+      "changes": [
+        {
+          "action": "merge duplicate",
+          "source": "U2",
+          "index": 1
+        }
+      ],
+      "baseline": {
+        "status": "ok",
+        "elapsed_ms": 705.33,
+        "input_tokens": 127,
+        "output_tokens": 15,
+        "usage_source": "provider",
+        "cost": null,
+        "check": {
+          "passed": true,
+          "method": "integer_function",
+          "expected": "{\"function\":\"triple\",\"tests\":[{\"args\":[7],\"returns\":21},{\"args\":[-3],\"returns\":-9},{\"args\":[0],\"returns\":0}]}",
+          "scope": "Configured check only"
+        },
+        "trace": "53f21abd0a524e3a8231c7d7a9ac3146"
+      },
+      "candidate": {
+        "status": "ok",
+        "elapsed_ms": 693.69,
+        "input_tokens": 104,
+        "output_tokens": 15,
+        "usage_source": "provider",
+        "cost": null,
+        "check": {
+          "passed": true,
+          "method": "integer_function",
+          "expected": "{\"function\":\"triple\",\"tests\":[{\"args\":[7],\"returns\":21},{\"args\":[-3],\"returns\":-9},{\"args\":[0],\"returns\":0}]}",
+          "scope": "Configured check only"
+        },
+        "trace": "45f60d45ba9f4bd2b5e9be8f4ff18611"
+      }
+    },
+    {
+      "repeat": 2,
+      "case": 1,
+      "changes": [
+        {
+          "action": "merge duplicate",
+          "source": "S2",
+          "index": 1
+        }
+      ],
+      "candidate": {
+        "status": "ok",
+        "elapsed_ms": 617.52,
+        "input_tokens": 99,
+        "output_tokens": 14,
+        "usage_source": "provider",
+        "cost": null,
+        "check": {
+          "passed": true,
+          "method": "integer_function",
+          "expected": "{\"function\":\"square\",\"tests\":[{\"args\":[-3],\"returns\":9},{\"args\":[4],\"returns\":16},{\"args\":[0],\"returns\":0}]}",
+          "scope": "Configured check only"
+        },
+        "trace": "7ce5724fb36349d8839a4481d23273dc"
+      },
+      "baseline": {
+        "status": "ok",
+        "elapsed_ms": 829.3,
+        "input_tokens": 118,
+        "output_tokens": 14,
+        "usage_source": "provider",
+        "cost": null,
+        "check": {
+          "passed": true,
+          "method": "integer_function",
+          "expected": "{\"function\":\"square\",\"tests\":[{\"args\":[-3],\"returns\":9},{\"args\":[4],\"returns\":16},{\"args\":[0],\"returns\":0}]}",
+          "scope": "Configured check only"
+        },
+        "trace": "6a4c6df5afc240608a3c47b944d39c73"
+      }
+    },
+    {
+      "repeat": 2,
+      "case": 2,
+      "changes": [
+        {
+          "action": "merge duplicate",
+          "source": "T2",
+          "index": 1
+        }
+      ],
+      "baseline": {
+        "status": "ok",
+        "elapsed_ms": 1121.44,
+        "input_tokens": 121,
+        "output_tokens": 16,
+        "usage_source": "provider",
+        "cost": null,
+        "check": {
+          "passed": true,
+          "method": "integer_function",
+          "expected": "{\"function\":\"subtract\",\"tests\":[{\"args\":[3,5],\"returns\":-2},{\"args\":[-2,-7],\"returns\":5},{\"args\":[9,9],\"returns\":0}]}",
+          "scope": "Configured check only"
+        },
+        "trace": "4a57936d23c248e6ad55a70ce7a22d86"
+      },
+      "candidate": {
+        "status": "ok",
+        "elapsed_ms": 705.31,
+        "input_tokens": 101,
+        "output_tokens": 16,
+        "usage_source": "provider",
+        "cost": null,
+        "check": {
+          "passed": true,
+          "method": "integer_function",
+          "expected": "{\"function\":\"subtract\",\"tests\":[{\"args\":[3,5],\"returns\":-2},{\"args\":[-2,-7],\"returns\":5},{\"args\":[9,9],\"returns\":0}]}",
+          "scope": "Configured check only"
+        },
+        "trace": "a6399f0cff8d47869e1d025a3ffd1dad"
+      }
+    },
+    {
+      "repeat": 2,
+      "case": 3,
+      "changes": [
+        {
+          "action": "merge duplicate",
+          "source": "U2",
+          "index": 1
+        }
+      ],
+      "candidate": {
+        "status": "ok",
+        "elapsed_ms": 712.9,
+        "input_tokens": 104,
+        "output_tokens": 15,
+        "usage_source": "provider",
+        "cost": null,
+        "check": {
+          "passed": true,
+          "method": "integer_function",
+          "expected": "{\"function\":\"triple\",\"tests\":[{\"args\":[7],\"returns\":21},{\"args\":[-3],\"returns\":-9},{\"args\":[0],\"returns\":0}]}",
+          "scope": "Configured check only"
+        },
+        "trace": "f33dd61ac7254c57b17a2d51dc702e67"
+      },
+      "baseline": {
+        "status": "ok",
+        "elapsed_ms": 833.78,
+        "input_tokens": 127,
+        "output_tokens": 15,
+        "usage_source": "provider",
+        "cost": null,
+        "check": {
+          "passed": true,
+          "method": "integer_function",
+          "expected": "{\"function\":\"triple\",\"tests\":[{\"args\":[7],\"returns\":21},{\"args\":[-3],\"returns\":-9},{\"args\":[0],\"returns\":0}]}",
+          "scope": "Configured check only"
+        },
+        "trace": "6564fe6d17144ce2850a0d0fc41af887"
+      }
+    }
+  ],
+  "cost_basis": "Versioned operator rates; estimated inference charges in USD microdollars.",
+  "net_system_savings": null,
+  "overhead": {
+    "external_analysis_calls": 0,
+    "external_evaluation_calls": 0,
+    "local_processing_ms": 3.180486998644483,
+    "transform_ms": 0.4624399998647277,
+    "infrastructure_cost": null,
+    "evaluation_inference_micros": 0
+  },
+  "rollout_cost_scenario": null,
+  "baseline": {
+    "runs": 6,
+    "passed": 6,
+    "accuracy": 1,
+    "input_tokens": 732,
+    "output_tokens": 90,
+    "usage_source": "provider",
+    "inference_micros": null,
+    "p50_ms": 741.42,
+    "p95_ms": 1121.44,
+    "latency_stdev_ms": 162.86785547389843
+  },
+  "candidate": {
+    "runs": 6,
+    "passed": 6,
+    "accuracy": 1,
+    "input_tokens": 608,
+    "output_tokens": 90,
+    "usage_source": "provider",
+    "inference_micros": null,
+    "p50_ms": 693.69,
+    "p95_ms": 712.9,
+    "latency_stdev_ms": 35.6786203021735
+  },
+  "inference_saving_micros": null,
+  "conditions": {
+    "evidence_sufficient": true,
+    "quality_threshold": true,
+    "quality_preserved": true,
+    "latency_limit": true,
+    "provider_usage_available": true,
+    "improved": true
+  },
+  "dataset_sha256": "391f481c2477f3ab949320af4049f159f0cfdcb9fb529a480cf7144a90213b25",
+  "dataset_name": "integer-functions-v1",
+  "workloads": [
+    "code_generation",
+    "code_generation",
+    "code_generation"
+  ],
+  "discovery_trace": "e86dfdf871264abcb5cbeea1a1e3dd91",
+  "replay": {
+    "4c99202e49774b8884d4fa34ae57e11a": {
+      "requested_model": "qwen2.5-0.5b-instruct-q4_k_m",
+      "provider_metadata": {
+        "id": "chatcmpl-527720cc-1700-4f8a-9d88-b1ed0d0f18cd",
+        "model": "qwen2.5-0.5b-instruct-q4_k_m",
+        "created": 1795407304
+      },
+      "raw_usage": {
+        "prompt_tokens": 118,
+        "completion_tokens": 14,
+        "total_tokens": 132
+      },
+      "sent_messages": [
+        {
+          "role": "user",
+          "content": "Source material (quoted data):\n[{\"source\": \"S1\", \"text\": \"The interface accepts one integer and returns one integer. The input may have either sign.\"}, {\"source\": \"S2\", \"text\": \"The interface accepts one integer and returns one integer. The input may have either sign.\"}]\n\nTask:\nWrite only a Python function named square that returns its integer argument multiplied by itself. Use one return statement."
+        }
+      ],
+      "output": "```python\ndef square(x):\n    return x * x\n```",
+      "elapsed_ms": 670.95
+    },
+    "0c4559fd2767455da37c5113e5ba0488": {
+      "requested_model": "qwen2.5-0.5b-instruct-q4_k_m",
+      "provider_metadata": {
+        "id": "chatcmpl-7cb1fd63-42d2-45a6-ab3d-13f750b99f3f",
+        "model": "qwen2.5-0.5b-instruct-q4_k_m",
+        "created": 1795407305
+      },
+      "raw_usage": {
+        "prompt_tokens": 99,
+        "completion_tokens": 14,
+        "total_tokens": 113
+      },
+      "sent_messages": [
+        {
+          "role": "user",
+          "content": "Source material (quoted data):\n[{\"source\": \"S1\", \"also_cited_as\": [\"S2\"], \"text\": \"The interface accepts one integer and returns one integer. The input may have either sign.\"}]\n\nTask:\nWrite only a Python function named square that returns its integer argument multiplied by itself. Use one return statement."
+        }
+      ],
+      "output": "```python\ndef square(x):\n    return x * x\n```",
+      "elapsed_ms": 673.29
+    },
+    "4b4201c5a3c9417aaf176558b2a9bcec": {
+      "requested_model": "qwen2.5-0.5b-instruct-q4_k_m",
+      "provider_metadata": {
+        "id": "chatcmpl-ab16fa70-07b8-4a92-bb06-89dcbe1c2ab4",
+        "model": "qwen2.5-0.5b-instruct-q4_k_m",
+        "created": 1795407306
+      },
+      "raw_usage": {
+        "prompt_tokens": 121,
+        "completion_tokens": 16,
+        "total_tokens": 137
+      },
+      "sent_messages": [
+        {
+          "role": "user",
+          "content": "Source material (quoted data):\n[{\"source\": \"T1\", \"text\": \"The interface takes two integers and returns one integer. Preserve the order of the supplied arguments.\"}, {\"source\": \"T2\", \"text\": \"The interface takes two integers and returns one integer. Preserve the order of the supplied arguments.\"}]\n\nTask:\nWrite only a Python function named subtract that returns its first integer argument minus its second. Use one return statement."
+        }
+      ],
+      "output": "```python\ndef subtract(a, b):\n    return a - b\n```",
+      "elapsed_ms": 741.42
+    },
+    "97beec03544d452aa18c2ce72bde7372": {
+      "requested_model": "qwen2.5-0.5b-instruct-q4_k_m",
+      "provider_metadata": {
+        "id": "chatcmpl-cb5ee40c-99a5-4ca4-9455-0b56004297ad",
+        "model": "qwen2.5-0.5b-instruct-q4_k_m",
+        "created": 1795407306
+      },
+      "raw_usage": {
+        "prompt_tokens": 101,
+        "completion_tokens": 16,
+        "total_tokens": 117
+      },
+      "sent_messages": [
+        {
+          "role": "user",
+          "content": "Source material (quoted data):\n[{\"source\": \"T1\", \"also_cited_as\": [\"T2\"], \"text\": \"The interface takes two integers and returns one integer. Preserve the order of the supplied arguments.\"}]\n\nTask:\nWrite only a Python function named subtract that returns its first integer argument minus its second. Use one return statement."
+        }
+      ],
+      "output": "```python\ndef subtract(a, b):\n    return a - b\n```",
+      "elapsed_ms": 705.21
+    },
+    "53f21abd0a524e3a8231c7d7a9ac3146": {
+      "requested_model": "qwen2.5-0.5b-instruct-q4_k_m",
+      "provider_metadata": {
+        "id": "chatcmpl-27ea807d-5608-4fdf-b39c-9f1d3db5ecca",
+        "model": "qwen2.5-0.5b-instruct-q4_k_m",
+        "created": 1795407307
+      },
+      "raw_usage": {
+        "prompt_tokens": 127,
+        "completion_tokens": 15,
+        "total_tokens": 142
+      },
+      "sent_messages": [
+        {
+          "role": "user",
+          "content": "Source material (quoted data):\n[{\"source\": \"U1\", \"text\": \"The caller supplies a signed integer. The return value must be an integer for both positive and negative inputs.\"}, {\"source\": \"U2\", \"text\": \"The caller supplies a signed integer. The return value must be an integer for both positive and negative inputs.\"}]\n\nTask:\nWrite only a Python function named triple that returns its integer argument multiplied by 3. Use one return statement."
+        }
+      ],
+      "output": "```python\ndef triple(x):\n    return x * 3\n```",
+      "elapsed_ms": 705.33
+    },
+    "45f60d45ba9f4bd2b5e9be8f4ff18611": {
+      "requested_model": "qwen2.5-0.5b-instruct-q4_k_m",
+      "provider_metadata": {
+        "id": "chatcmpl-79126632-507b-4470-bdc9-e30777825f61",
+        "model": "qwen2.5-0.5b-instruct-q4_k_m",
+        "created": 1795407308
+      },
+      "raw_usage": {
+        "prompt_tokens": 104,
+        "completion_tokens": 15,
+        "total_tokens": 119
+      },
+      "sent_messages": [
+        {
+          "role": "user",
+          "content": "Source material (quoted data):\n[{\"source\": \"U1\", \"also_cited_as\": [\"U2\"], \"text\": \"The caller supplies a signed integer. The return value must be an integer for both positive and negative inputs.\"}]\n\nTask:\nWrite only a Python function named triple that returns its integer argument multiplied by 3. Use one return statement."
+        }
+      ],
+      "output": "```python\ndef triple(x):\n    return x * 3\n```",
+      "elapsed_ms": 693.69
+    },
+    "6a4c6df5afc240608a3c47b944d39c73": {
+      "requested_model": "qwen2.5-0.5b-instruct-q4_k_m",
+      "provider_metadata": {
+        "id": "chatcmpl-449dc6fd-3c18-4950-b341-bc41c59d7c37",
+        "model": "qwen2.5-0.5b-instruct-q4_k_m",
+        "created": 1795407309
+      },
+      "raw_usage": {
+        "prompt_tokens": 118,
+        "completion_tokens": 14,
+        "total_tokens": 132
+      },
+      "sent_messages": [
+        {
+          "role": "user",
+          "content": "Source material (quoted data):\n[{\"source\": \"S1\", \"text\": \"The interface accepts one integer and returns one integer. The input may have either sign.\"}, {\"source\": \"S2\", \"text\": \"The interface accepts one integer and returns one integer. The input may have either sign.\"}]\n\nTask:\nWrite only a Python function named square that returns its integer argument multiplied by itself. Use one return statement."
+        }
+      ],
+      "output": "```python\ndef square(x):\n    return x * x\n```",
+      "elapsed_ms": 829.3
+    },
+    "7ce5724fb36349d8839a4481d23273dc": {
+      "requested_model": "qwen2.5-0.5b-instruct-q4_k_m",
+      "provider_metadata": {
+        "id": "chatcmpl-8f6cd52b-e415-4627-bde0-24a51cd54394",
+        "model": "qwen2.5-0.5b-instruct-q4_k_m",
+        "created": 1795407309
+      },
+      "raw_usage": {
+        "prompt_tokens": 99,
+        "completion_tokens": 14,
+        "total_tokens": 113
+      },
+      "sent_messages": [
+        {
+          "role": "user",
+          "content": "Source material (quoted data):\n[{\"source\": \"S1\", \"also_cited_as\": [\"S2\"], \"text\": \"The interface accepts one integer and returns one integer. The input may have either sign.\"}]\n\nTask:\nWrite only a Python function named square that returns its integer argument multiplied by itself. Use one return statement."
+        }
+      ],
+      "output": "```python\ndef square(x):\n    return x * x\n```",
+      "elapsed_ms": 617.52
+    },
+    "4a57936d23c248e6ad55a70ce7a22d86": {
+      "requested_model": "qwen2.5-0.5b-instruct-q4_k_m",
+      "provider_metadata": {
+        "id": "chatcmpl-3878aaba-8d52-4bf3-a829-ec93642ada6d",
+        "model": "qwen2.5-0.5b-instruct-q4_k_m",
+        "created": 1795407310
+      },
+      "raw_usage": {
+        "prompt_tokens": 121,
+        "completion_tokens": 16,
+        "total_tokens": 137
+      },
+      "sent_messages": [
+        {
+          "role": "user",
+          "content": "Source material (quoted data):\n[{\"source\": \"T1\", \"text\": \"The interface takes two integers and returns one integer. Preserve the order of the supplied arguments.\"}, {\"source\": \"T2\", \"text\": \"The interface takes two integers and returns one integer. Preserve the order of the supplied arguments.\"}]\n\nTask:\nWrite only a Python function named subtract that returns its first integer argument minus its second. Use one return statement."
+        }
+      ],
+      "output": "```python\ndef subtract(a, b):\n    return a - b\n```",
+      "elapsed_ms": 1121.44
+    },
+    "a6399f0cff8d47869e1d025a3ffd1dad": {
+      "requested_model": "qwen2.5-0.5b-instruct-q4_k_m",
+      "provider_metadata": {
+        "id": "chatcmpl-57486b2a-ec9c-45b7-8b8c-d3ff6d2c94cd",
+        "model": "qwen2.5-0.5b-instruct-q4_k_m",
+        "created": 1795407311
+      },
+      "raw_usage": {
+        "prompt_tokens": 101,
+        "completion_tokens": 16,
+        "total_tokens": 117
+      },
+      "sent_messages": [
+        {
+          "role": "user",
+          "content": "Source material (quoted data):\n[{\"source\": \"T1\", \"also_cited_as\": [\"T2\"], \"text\": \"The interface takes two integers and returns one integer. Preserve the order of the supplied arguments.\"}]\n\nTask:\nWrite only a Python function named subtract that returns its first integer argument minus its second. Use one return statement."
+        }
+      ],
+      "output": "```python\ndef subtract(a, b):\n    return a - b\n```",
+      "elapsed_ms": 705.31
+    },
+    "6564fe6d17144ce2850a0d0fc41af887": {
+      "requested_model": "qwen2.5-0.5b-instruct-q4_k_m",
+      "provider_metadata": {
+        "id": "chatcmpl-124137ba-ad51-48b9-94e0-207941a0acb6",
+        "model": "qwen2.5-0.5b-instruct-q4_k_m",
+        "created": 1795407313
+      },
+      "raw_usage": {
+        "prompt_tokens": 127,
+        "completion_tokens": 15,
+        "total_tokens": 142
+      },
+      "sent_messages": [
+        {
+          "role": "user",
+          "content": "Source material (quoted data):\n[{\"source\": \"U1\", \"text\": \"The caller supplies a signed integer. The return value must be an integer for both positive and negative inputs.\"}, {\"source\": \"U2\", \"text\": \"The caller supplies a signed integer. The return value must be an integer for both positive and negative inputs.\"}]\n\nTask:\nWrite only a Python function named triple that returns its integer argument multiplied by 3. Use one return statement."
+        }
+      ],
+      "output": "```python\ndef triple(x):\n    return x * 3\n```",
+      "elapsed_ms": 833.78
+    },
+    "f33dd61ac7254c57b17a2d51dc702e67": {
+      "requested_model": "qwen2.5-0.5b-instruct-q4_k_m",
+      "provider_metadata": {
+        "id": "chatcmpl-3e9129a1-67da-4150-9383-84d01c56e621",
+        "model": "qwen2.5-0.5b-instruct-q4_k_m",
+        "created": 1795407312
+      },
+      "raw_usage": {
+        "prompt_tokens": 104,
+        "completion_tokens": 15,
+        "total_tokens": 119
+      },
+      "sent_messages": [
+        {
+          "role": "user",
+          "content": "Source material (quoted data):\n[{\"source\": \"U1\", \"also_cited_as\": [\"U2\"], \"text\": \"The caller supplies a signed integer. The return value must be an integer for both positive and negative inputs.\"}]\n\nTask:\nWrite only a Python function named triple that returns its integer argument multiplied by 3. Use one return statement."
+        }
+      ],
+      "output": "```python\ndef triple(x):\n    return x * 3\n```",
+      "elapsed_ms": 712.9
+    }
+  },
+  "runtime": {
+    "model_file": "qwen2.5-0.5b-instruct-q4_k_m.gguf",
+    "model_sha256": "74a4da8c9fdbcd15bd1f6d01d621410d31c6fc00986f5eb687824e7b93d7a9db",
+    "llama_cpp_python": "0.3.37",
+    "python": "3.12.14",
+    "threads": 3,
+    "context_window": 2048,
+    "seed": 19,
+    "temperature": 0,
+    "max_output_tokens": 64,
+    "tls": "verified loopback"
+  },
+  "policy_demo": {
+    "policy": "ae978e91f10646b3875881ff6083deab",
+    "trace": "7a051225fb194a4f9e3eab6220f12fad",
+    "check": {
+      "quality": {
+        "passed": true,
+        "method": "integer_function",
+        "expected": "{\"function\":\"square\",\"tests\":[{\"args\":[-3],\"returns\":9},{\"args\":[4],\"returns\":16},{\"args\":[0],\"returns\":0}]}",
+        "scope": "Configured check only"
+      },
+      "latency_violation": false
+    },
+    "rolled_back": true,
+    "post_rollback_status": 409
+  }
+}

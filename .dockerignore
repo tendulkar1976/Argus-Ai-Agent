@@ -1,0 +1,9 @@
+.git
+.env
+.venv
+.argus
+**/__pycache__
+studio/node_modules
+studio/.next
+studio/out
+.pytest_cache

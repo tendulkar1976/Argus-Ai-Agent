@@ -1,0 +1,689 @@
+{
+  "id": "41090047bc194763ad5f069b36337efd",
+  "status": "rejected",
+  "version": "paired-v1",
+  "strategy": "deduplicate",
+  "model": "81f8622ef0c84a1bb4f17f757e76b55a",
+  "config": {
+    "trace_id": "8df159264b7642bb8f8e5b953ffb1e7b",
+    "strategy": "deduplicate",
+    "objective": "tokens",
+    "candidate_model": null,
+    "cases": [
+      {
+        "request": {
+          "model": "81f8622ef0c84a1bb4f17f757e76b55a",
+          "messages": [
+            {
+              "role": "user",
+              "content": "What color is the badge? Reply with the color only.",
+              "tool_call_id": null
+            }
+          ],
+          "temperature": 0.0,
+          "max_tokens": 64,
+          "stream": false,
+          "evidence": [
+            {
+              "source": "Q1",
+              "text": "The badge color is green. Each visitor receives a badge at the front desk.",
+              "aliases": [],
+              "critical": false
+            },
+            {
+              "source": "Q2",
+              "text": "The badge color is green. Each visitor receives a badge at the front desk.",
+              "aliases": [],
+              "critical": false
+            }
+          ],
+          "policy_id": null,
+          "cache_ttl_seconds": 0
+        },
+        "check": {
+          "method": "exact",
+          "expected": "green",
+          "tolerance": 0
+        }
+      },
+      {
+        "request": {
+          "model": "81f8622ef0c84a1bb4f17f757e76b55a",
+          "messages": [
+            {
+              "role": "user",
+              "content": "Return only a JSON object with the integer field quantity from the invoice.",
+              "tool_call_id": null
+            }
+          ],
+          "temperature": 0.0,
+          "max_tokens": 64,
+          "stream": false,
+          "evidence": [
+            {
+              "source": "I1",
+              "text": "Invoice 82 contains a quantity of 14. This quantity was verified by the receiving team.",
+              "aliases": [],
+              "critical": false
+            },
+            {
+              "source": "I2",
+              "text": "Invoice 82 contains a quantity of 14. This quantity was verified by the receiving team.",
+              "aliases": [],
+              "critical": false
+            }
+          ],
+          "policy_id": null,
+          "cache_ttl_seconds": 0
+        },
+        "check": {
+          "method": "json_fields",
+          "expected": "{\"quantity\":14}",
+          "tolerance": 0
+        }
+      },
+      {
+        "request": {
+          "model": "81f8622ef0c84a1bb4f17f757e76b55a",
+          "messages": [
+            {
+              "role": "user",
+              "content": "Write only a Python function named double that returns its integer argument multiplied by 2. Use one return statement.",
+              "tool_call_id": null
+            }
+          ],
+          "temperature": 0.0,
+          "max_tokens": 64,
+          "stream": false,
+          "evidence": [
+            {
+              "source": "C1",
+              "text": "The interface takes one integer and produces one integer. Both positive and negative values are allowed.",
+              "aliases": [],
+              "critical": false
+            },
+            {
+              "source": "C2",
+              "text": "The interface takes one integer and produces one integer. Both positive and negative values are allowed.",
+              "aliases": [],
+              "critical": false
+            }
+          ],
+          "policy_id": null,
+          "cache_ttl_seconds": 0
+        },
+        "check": {
+          "method": "integer_function",
+          "expected": "{\"function\":\"double\",\"tests\":[{\"args\":[3],\"returns\":6},{\"args\":[-2],\"returns\":-4},{\"args\":[0],\"returns\":0}]}",
+          "tolerance": 0
+        }
+      }
+    ],
+    "repeats": 2,
+    "min_accuracy": 1.0,
+    "max_latency_ms": null,
+    "approve_calls": 12
+  },
+  "pairs": [
+    {
+      "repeat": 1,
+      "case": 1,
+      "changes": [
+        {
+          "action": "merge duplicate",
+          "source": "Q2",
+          "index": 1
+        }
+      ],
+      "baseline": {
+        "status": "ok",
+        "elapsed_ms": 265.71,
+        "input_tokens": 113,
+        "output_tokens": 5,
+        "usage_source": "provider",
+        "cost": null,
+        "check": {
+          "passed": false,
+          "method": "exact",
+          "expected": "green",
+          "scope": "Configured check only"
+        },
+        "trace": "1a3590f9202a4da6b8959bcded1f13e8"
+      },
+      "candidate": {
+        "status": "ok",
+        "elapsed_ms": 185.31,
+        "input_tokens": 96,
+        "output_tokens": 6,
+        "usage_source": "provider",
+        "cost": null,
+        "check": {
+          "passed": false,
+          "method": "exact",
+          "expected": "green",
+          "scope": "Configured check only"
+        },
+        "trace": "ae97d87dbe06494e9f319fe173c6982f"
+      }
+    },
+    {
+      "repeat": 1,
+      "case": 2,
+      "changes": [
+        {
+          "action": "merge duplicate",
+          "source": "I2",
+          "index": 1
+        }
+      ],
+      "candidate": {
+        "status": "ok",
+        "elapsed_ms": 829.59,
+        "input_tokens": 103,
+        "output_tokens": 64,
+        "usage_source": "provider",
+        "cost": null,
+        "check": {
+          "passed": false,
+          "method": "json_fields",
+          "expected": "{\"quantity\":14}",
+          "scope": "Configured check only"
+        },
+        "trace": "05f7de51ffc24b2eb9480c266e11af99"
+      },
+      "baseline": {
+        "status": "ok",
+        "elapsed_ms": 615.89,
+        "input_tokens": 126,
+        "output_tokens": 64,
+        "usage_source": "provider",
+        "cost": null,
+        "check": {
+          "passed": false,
+          "method": "json_fields",
+          "expected": "{\"quantity\":14}",
+          "scope": "Configured check only"
+        },
+        "trace": "6bb101f37a044a9c8c62d5b7dbfdcf52"
+      }
+    },
+    {
+      "repeat": 1,
+      "case": 3,
+      "changes": [
+        {
+          "action": "merge duplicate",
+          "source": "C2",
+          "index": 1
+        }
+      ],
+      "baseline": {
+        "status": "ok",
+        "elapsed_ms": 569.65,
+        "input_tokens": 126,
+        "output_tokens": 56,
+        "usage_source": "provider",
+        "cost": null,
+        "check": {
+          "passed": false,
+          "method": "integer_function",
+          "expected": "{\"function\":\"double\",\"tests\":[{\"args\":[3],\"returns\":6},{\"args\":[-2],\"returns\":-4},{\"args\":[0],\"returns\":0}]}",
+          "scope": "Configured check only"
+        },
+        "trace": "98da9fcc922e4ae8a19cafc1b318476b"
+      },
+      "candidate": {
+        "status": "ok",
+        "elapsed_ms": 623.0,
+        "input_tokens": 107,
+        "output_tokens": 64,
+        "usage_source": "provider",
+        "cost": null,
+        "check": {
+          "passed": false,
+          "method": "integer_function",
+          "expected": "{\"function\":\"double\",\"tests\":[{\"args\":[3],\"returns\":6},{\"args\":[-2],\"returns\":-4},{\"args\":[0],\"returns\":0}]}",
+          "scope": "Configured check only"
+        },
+        "trace": "7d091770e1f44fc5b0f8aa38c2df6309"
+      }
+    },
+    {
+      "repeat": 2,
+      "case": 1,
+      "changes": [
+        {
+          "action": "merge duplicate",
+          "source": "Q2",
+          "index": 1
+        }
+      ],
+      "candidate": {
+        "status": "ok",
+        "elapsed_ms": 189.7,
+        "input_tokens": 96,
+        "output_tokens": 6,
+        "usage_source": "provider",
+        "cost": null,
+        "check": {
+          "passed": false,
+          "method": "exact",
+          "expected": "green",
+          "scope": "Configured check only"
+        },
+        "trace": "24019fc07ae94f148ad65fdde8303e88"
+      },
+      "baseline": {
+        "status": "ok",
+        "elapsed_ms": 190.19,
+        "input_tokens": 113,
+        "output_tokens": 5,
+        "usage_source": "provider",
+        "cost": null,
+        "check": {
+          "passed": false,
+          "method": "exact",
+          "expected": "green",
+          "scope": "Configured check only"
+        },
+        "trace": "7790644119be443eae890643b27f118f"
+      }
+    },
+    {
+      "repeat": 2,
+      "case": 2,
+      "changes": [
+        {
+          "action": "merge duplicate",
+          "source": "I2",
+          "index": 1
+        }
+      ],
+      "baseline": {
+        "status": "ok",
+        "elapsed_ms": 697.81,
+        "input_tokens": 126,
+        "output_tokens": 64,
+        "usage_source": "provider",
+        "cost": null,
+        "check": {
+          "passed": false,
+          "method": "json_fields",
+          "expected": "{\"quantity\":14}",
+          "scope": "Configured check only"
+        },
+        "trace": "fc9509bcb19a4889858ce30786737ac1"
+      },
+      "candidate": {
+        "status": "ok",
+        "elapsed_ms": 697.5,
+        "input_tokens": 103,
+        "output_tokens": 64,
+        "usage_source": "provider",
+        "cost": null,
+        "check": {
+          "passed": false,
+          "method": "json_fields",
+          "expected": "{\"quantity\":14}",
+          "scope": "Configured check only"
+        },
+        "trace": "3c37b04fa0d24ff299f5877c35c8e6d3"
+      }
+    },
+    {
+      "repeat": 2,
+      "case": 3,
+      "changes": [
+        {
+          "action": "merge duplicate",
+          "source": "C2",
+          "index": 1
+        }
+      ],
+      "candidate": {
+        "status": "ok",
+        "elapsed_ms": 6531.3,
+        "input_tokens": 107,
+        "output_tokens": 64,
+        "usage_source": "provider",
+        "cost": null,
+        "check": {
+          "passed": false,
+          "method": "integer_function",
+          "expected": "{\"function\":\"double\",\"tests\":[{\"args\":[3],\"returns\":6},{\"args\":[-2],\"returns\":-4},{\"args\":[0],\"returns\":0}]}",
+          "scope": "Configured check only"
+        },
+        "trace": "5d3586ff6b6d4bae8ae13963d20fd610"
+      },
+      "baseline": {
+        "status": "ok",
+        "elapsed_ms": 765.74,
+        "input_tokens": 126,
+        "output_tokens": 56,
+        "usage_source": "provider",
+        "cost": null,
+        "check": {
+          "passed": false,
+          "method": "integer_function",
+          "expected": "{\"function\":\"double\",\"tests\":[{\"args\":[3],\"returns\":6},{\"args\":[-2],\"returns\":-4},{\"args\":[0],\"returns\":0}]}",
+          "scope": "Configured check only"
+        },
+        "trace": "f3f402bb04a447aca10414f360da25f9"
+      }
+    }
+  ],
+  "cost_basis": "Versioned operator rates; estimated inference charges in USD microdollars.",
+  "net_system_savings": null,
+  "overhead": {
+    "external_analysis_calls": 0,
+    "external_evaluation_calls": 0,
+    "local_processing_ms": 1.1857399995278683,
+    "infrastructure_cost": null
+  },
+  "baseline": {
+    "runs": 6,
+    "passed": 0,
+    "accuracy": 0,
+    "input_tokens": 730,
+    "output_tokens": 250,
+    "usage_source": "provider",
+    "inference_micros": null,
+    "p50_ms": 569.65,
+    "p95_ms": 765.74,
+    "latency_stdev_ms": 235.3996807488631
+  },
+  "candidate": {
+    "runs": 6,
+    "passed": 0,
+    "accuracy": 0,
+    "input_tokens": 612,
+    "output_tokens": 268,
+    "usage_source": "provider",
+    "inference_micros": null,
+    "p50_ms": 623.0,
+    "p95_ms": 6531.3,
+    "latency_stdev_ms": 2474.725448780127
+  },
+  "inference_saving_micros": null,
+  "conditions": {
+    "quality_threshold": false,
+    "quality_preserved": true,
+    "latency_limit": true,
+    "provider_usage_available": true,
+    "improved": true
+  },
+  "dataset_sha256": "653ba9dcc0c1214717f73c0c8ad18b303e21e591517af8a2ced7a57c40775335",
+  "dataset_name": "argus-starter-v1",
+  "workloads": [
+    "document_qa",
+    "structured_extraction",
+    "code_generation"
+  ],
+  "discovery_trace": "8df159264b7642bb8f8e5b953ffb1e7b",
+  "replay": {
+    "1a3590f9202a4da6b8959bcded1f13e8": {
+      "requested_model": "SmolLM2-135M-Instruct-Q4_K_M",
+      "provider_metadata": {
+        "id": "chatcmpl-c3d159fc-d505-4a7a-a318-f28684d4b7ee",
+        "model": "SmolLM2-135M-Instruct-Q4_K_M",
+        "created": 1795406973
+      },
+      "raw_usage": {
+        "prompt_tokens": 113,
+        "completion_tokens": 5,
+        "total_tokens": 118
+      },
+      "sent_messages": [
+        {
+          "role": "user",
+          "content": "Source material (quoted data):\n[{\"source\": \"Q1\", \"text\": \"The badge color is green. Each visitor receives a badge at the front desk.\"}, {\"source\": \"Q2\", \"text\": \"The badge color is green. Each visitor receives a badge at the front desk.\"}]\n\nTask:\nWhat color is the badge? Reply with the color only."
+        }
+      ],
+      "output": "The badge is green.",
+      "elapsed_ms": 265.71
+    },
+    "ae97d87dbe06494e9f319fe173c6982f": {
+      "requested_model": "SmolLM2-135M-Instruct-Q4_K_M",
+      "provider_metadata": {
+        "id": "chatcmpl-5fc30f70-1473-41f0-8321-372f2324b4d0",
+        "model": "SmolLM2-135M-Instruct-Q4_K_M",
+        "created": 1795406973
+      },
+      "raw_usage": {
+        "prompt_tokens": 96,
+        "completion_tokens": 6,
+        "total_tokens": 102
+      },
+      "sent_messages": [
+        {
+          "role": "user",
+          "content": "Source material (quoted data):\n[{\"source\": \"Q1\", \"also_cited_as\": [\"Q2\"], \"text\": \"The badge color is green. Each visitor receives a badge at the front desk.\"}]\n\nTask:\nWhat color is the badge? Reply with the color only."
+        }
+      ],
+      "output": "The badge color is green.",
+      "elapsed_ms": 185.31
+    },
+    "6bb101f37a044a9c8c62d5b7dbfdcf52": {
+      "requested_model": "SmolLM2-135M-Instruct-Q4_K_M",
+      "provider_metadata": {
+        "id": "chatcmpl-90f644db-acfc-4272-95c7-daf3fed8043c",
+        "model": "SmolLM2-135M-Instruct-Q4_K_M",
+        "created": 1795406974
+      },
+      "raw_usage": {
+        "prompt_tokens": 126,
+        "completion_tokens": 64,
+        "total_tokens": 190
+      },
+      "sent_messages": [
+        {
+          "role": "user",
+          "content": "Source material (quoted data):\n[{\"source\": \"I1\", \"text\": \"Invoice 82 contains a quantity of 14. This quantity was verified by the receiving team.\"}, {\"source\": \"I2\", \"text\": \"Invoice 82 contains a quantity of 14. This quantity was verified by the receiving team.\"}]\n\nTask:\nReturn only a JSON object with the integer field quantity from the invoice."
+        }
+      ],
+      "output": "Here's a Python function that returns a JSON object with the integer field quantity from the invoice:\n\n```python\nimport json\n\ndef get_quantity_from_invoice(invoice):\n    return json.loads(json.dumps(invoice))['quantity']\n```\n\nThis function uses",
+      "elapsed_ms": 615.89
+    },
+    "05f7de51ffc24b2eb9480c266e11af99": {
+      "requested_model": "SmolLM2-135M-Instruct-Q4_K_M",
+      "provider_metadata": {
+        "id": "chatcmpl-68c793b5-0b5c-484d-b352-3aa62bf3f4d8",
+        "model": "SmolLM2-135M-Instruct-Q4_K_M",
+        "created": 1795406973
+      },
+      "raw_usage": {
+        "prompt_tokens": 103,
+        "completion_tokens": 64,
+        "total_tokens": 167
+      },
+      "sent_messages": [
+        {
+          "role": "user",
+          "content": "Source material (quoted data):\n[{\"source\": \"I1\", \"also_cited_as\": [\"I2\"], \"text\": \"Invoice 82 contains a quantity of 14. This quantity was verified by the receiving team.\"}]\n\nTask:\nReturn only a JSON object with the integer field quantity from the invoice."
+        }
+      ],
+      "output": "Here is a Python function that returns a JSON object with the integer field quantity from the invoice:\n\n```python\nimport json\n\ndef get_quantity_from_invoice(invoice):\n    return json.loads(invoice)['quantity']\n```\n\nThis function uses the `json`",
+      "elapsed_ms": 829.59
+    },
+    "98da9fcc922e4ae8a19cafc1b318476b": {
+      "requested_model": "SmolLM2-135M-Instruct-Q4_K_M",
+      "provider_metadata": {
+        "id": "chatcmpl-c9328576-2739-4d2c-babe-1c62753b9e8d",
+        "model": "SmolLM2-135M-Instruct-Q4_K_M",
+        "created": 1795406974
+      },
+      "raw_usage": {
+        "prompt_tokens": 126,
+        "completion_tokens": 56,
+        "total_tokens": 182
+      },
+      "sent_messages": [
+        {
+          "role": "user",
+          "content": "Source material (quoted data):\n[{\"source\": \"C1\", \"text\": \"The interface takes one integer and produces one integer. Both positive and negative values are allowed.\"}, {\"source\": \"C2\", \"text\": \"The interface takes one integer and produces one integer. Both positive and negative values are allowed.\"}]\n\nTask:\nWrite only a Python function named double that returns its integer argument multiplied by 2. Use one return statement."
+        }
+      ],
+      "output": "```python\ndef double(x):\n    return x * 2\n```\n\nThis function uses the built-in `*` operator to multiply the integer arguments `x` and `2`. The `return` statement is used to return the result of the multiplication.",
+      "elapsed_ms": 569.65
+    },
+    "7d091770e1f44fc5b0f8aa38c2df6309": {
+      "requested_model": "SmolLM2-135M-Instruct-Q4_K_M",
+      "provider_metadata": {
+        "id": "chatcmpl-a226942b-20df-4ebb-8d45-f2b4a56ccf92",
+        "model": "SmolLM2-135M-Instruct-Q4_K_M",
+        "created": 1795406975
+      },
+      "raw_usage": {
+        "prompt_tokens": 107,
+        "completion_tokens": 64,
+        "total_tokens": 171
+      },
+      "sent_messages": [
+        {
+          "role": "user",
+          "content": "Source material (quoted data):\n[{\"source\": \"C1\", \"also_cited_as\": [\"C2\"], \"text\": \"The interface takes one integer and produces one integer. Both positive and negative values are allowed.\"}]\n\nTask:\nWrite only a Python function named double that returns its integer argument multiplied by 2. Use one return statement."
+        }
+      ],
+      "output": "```python\ndef double(x):\n    return x * 2\n```\n\nThis function uses a single return statement to exit the function and return the result of the integer multiplication. The `*` operator is used to unpack the integer arguments into two separate arguments. The `+` operator is used to add",
+      "elapsed_ms": 623.0
+    },
+    "7790644119be443eae890643b27f118f": {
+      "requested_model": "SmolLM2-135M-Instruct-Q4_K_M",
+      "provider_metadata": {
+        "id": "chatcmpl-1be66748-4018-4c8f-a545-5ef7bab5fd1f",
+        "model": "SmolLM2-135M-Instruct-Q4_K_M",
+        "created": 1795406976
+      },
+      "raw_usage": {
+        "prompt_tokens": 113,
+        "completion_tokens": 5,
+        "total_tokens": 118
+      },
+      "sent_messages": [
+        {
+          "role": "user",
+          "content": "Source material (quoted data):\n[{\"source\": \"Q1\", \"text\": \"The badge color is green. Each visitor receives a badge at the front desk.\"}, {\"source\": \"Q2\", \"text\": \"The badge color is green. Each visitor receives a badge at the front desk.\"}]\n\nTask:\nWhat color is the badge? Reply with the color only."
+        }
+      ],
+      "output": "The badge is green.",
+      "elapsed_ms": 190.19
+    },
+    "24019fc07ae94f148ad65fdde8303e88": {
+      "requested_model": "SmolLM2-135M-Instruct-Q4_K_M",
+      "provider_metadata": {
+        "id": "chatcmpl-0a731ee9-9271-45b6-b145-4c1bc33055fe",
+        "model": "SmolLM2-135M-Instruct-Q4_K_M",
+        "created": 1795406976
+      },
+      "raw_usage": {
+        "prompt_tokens": 96,
+        "completion_tokens": 6,
+        "total_tokens": 102
+      },
+      "sent_messages": [
+        {
+          "role": "user",
+          "content": "Source material (quoted data):\n[{\"source\": \"Q1\", \"also_cited_as\": [\"Q2\"], \"text\": \"The badge color is green. Each visitor receives a badge at the front desk.\"}]\n\nTask:\nWhat color is the badge? Reply with the color only."
+        }
+      ],
+      "output": "The badge color is green.",
+      "elapsed_ms": 189.7
+    },
+    "fc9509bcb19a4889858ce30786737ac1": {
+      "requested_model": "SmolLM2-135M-Instruct-Q4_K_M",
+      "provider_metadata": {
+        "id": "chatcmpl-af6a0eb7-c868-424a-ba4d-36c417364f14",
+        "model": "SmolLM2-135M-Instruct-Q4_K_M",
+        "created": 1795406976
+      },
+      "raw_usage": {
+        "prompt_tokens": 126,
+        "completion_tokens": 64,
+        "total_tokens": 190
+      },
+      "sent_messages": [
+        {
+          "role": "user",
+          "content": "Source material (quoted data):\n[{\"source\": \"I1\", \"text\": \"Invoice 82 contains a quantity of 14. This quantity was verified by the receiving team.\"}, {\"source\": \"I2\", \"text\": \"Invoice 82 contains a quantity of 14. This quantity was verified by the receiving team.\"}]\n\nTask:\nReturn only a JSON object with the integer field quantity from the invoice."
+        }
+      ],
+      "output": "Here's a Python function that returns a JSON object with the integer field quantity from the invoice:\n\n```python\nimport json\n\ndef get_quantity_from_invoice(invoice):\n    return json.loads(json.dumps(invoice))['quantity']\n```\n\nThis function uses",
+      "elapsed_ms": 697.81
+    },
+    "3c37b04fa0d24ff299f5877c35c8e6d3": {
+      "requested_model": "SmolLM2-135M-Instruct-Q4_K_M",
+      "provider_metadata": {
+        "id": "chatcmpl-f0cab361-af15-40ec-8858-c49ac223c11b",
+        "model": "SmolLM2-135M-Instruct-Q4_K_M",
+        "created": 1795406977
+      },
+      "raw_usage": {
+        "prompt_tokens": 103,
+        "completion_tokens": 64,
+        "total_tokens": 167
+      },
+      "sent_messages": [
+        {
+          "role": "user",
+          "content": "Source material (quoted data):\n[{\"source\": \"I1\", \"also_cited_as\": [\"I2\"], \"text\": \"Invoice 82 contains a quantity of 14. This quantity was verified by the receiving team.\"}]\n\nTask:\nReturn only a JSON object with the integer field quantity from the invoice."
+        }
+      ],
+      "output": "Here is a Python function that returns a JSON object with the integer field quantity from the invoice:\n\n```python\nimport json\n\ndef get_quantity_from_invoice(invoice):\n    return json.loads(invoice)['quantity']\n```\n\nThis function uses the `json`",
+      "elapsed_ms": 697.5
+    },
+    "f3f402bb04a447aca10414f360da25f9": {
+      "requested_model": "SmolLM2-135M-Instruct-Q4_K_M",
+      "provider_metadata": {
+        "id": "chatcmpl-4a580464-531a-40b0-9c6c-fb3837d7cec7",
+        "model": "SmolLM2-135M-Instruct-Q4_K_M",
+        "created": 1795406984
+      },
+      "raw_usage": {
+        "prompt_tokens": 126,
+        "completion_tokens": 56,
+        "total_tokens": 182
+      },
+      "sent_messages": [
+        {
+          "role": "user",
+          "content": "Source material (quoted data):\n[{\"source\": \"C1\", \"text\": \"The interface takes one integer and produces one integer. Both positive and negative values are allowed.\"}, {\"source\": \"C2\", \"text\": \"The interface takes one integer and produces one integer. Both positive and negative values are allowed.\"}]\n\nTask:\nWrite only a Python function named double that returns its integer argument multiplied by 2. Use one return statement."
+        }
+      ],
+      "output": "```python\ndef double(x):\n    return x * 2\n```\n\nThis function uses the built-in `*` operator to multiply the integer arguments `x` and `2`. The `return` statement is used to return the result of the multiplication.",
+      "elapsed_ms": 765.74
+    },
+    "5d3586ff6b6d4bae8ae13963d20fd610": {
+      "requested_model": "SmolLM2-135M-Instruct-Q4_K_M",
+      "provider_metadata": {
+        "id": "chatcmpl-2a28fb87-863c-419b-b88b-c267bd66ca2c",
+        "model": "SmolLM2-135M-Instruct-Q4_K_M",
+        "created": 1795406977
+      },
+      "raw_usage": {
+        "prompt_tokens": 107,
+        "completion_tokens": 64,
+        "total_tokens": 171
+      },
+      "sent_messages": [
+        {
+          "role": "user",
+          "content": "Source material (quoted data):\n[{\"source\": \"C1\", \"also_cited_as\": [\"C2\"], \"text\": \"The interface takes one integer and produces one integer. Both positive and negative values are allowed.\"}]\n\nTask:\nWrite only a Python function named double that returns its integer argument multiplied by 2. Use one return statement."
+        }
+      ],
+      "output": "```python\ndef double(x):\n    return x * 2\n```\n\nThis function uses a single return statement to exit the function and return the result of the integer multiplication. The `*` operator is used to unpack the integer arguments into two separate arguments. The `+` operator is used to add",
+      "elapsed_ms": 6531.3
+    }
+  },
+  "runtime": {
+    "model_file": "SmolLM2-135M-Instruct-Q4_K_M.gguf",
+    "model_sha256": "2e8040ceae7815abe0dcb3540b9995eaa1fa0d2ca9e797d0a635ae4433c68c2d",
+    "llama_cpp_python": "0.3.37",
+    "python": "3.12.14",
+    "threads": 3,
+    "context_window": 2048,
+    "seed": 19,
+    "temperature": 0,
+    "max_output_tokens": 64,
+    "tls": "verified loopback"
+  }
+}

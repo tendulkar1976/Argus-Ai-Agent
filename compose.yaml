@@ -1,0 +1,26 @@
+services:
+  engine:
+    build: .
+    ports:
+      - "127.0.0.1:8000:8000"
+    environment:
+      DATABASE_URL: "postgresql+psycopg://argus:${POSTGRES_PASSWORD:?Set a URL-safe database password}@postgres:5432/argus"
+      ARGUS_ENCRYPTION_KEY: "${ARGUS_ENCRYPTION_KEY:?Set a Fernet key in .env}"
+    depends_on:
+      postgres:
+        condition: service_healthy
+  postgres:
+    image: postgres:17
+    environment:
+      POSTGRES_USER: argus
+      POSTGRES_DB: argus
+      POSTGRES_PASSWORD: "${POSTGRES_PASSWORD:?Set a URL-safe database password}"
+    volumes:
+      - database:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U argus -d argus"]
+      interval: 5s
+      timeout: 3s
+      retries: 15
+volumes:
+  database:

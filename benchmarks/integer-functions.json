@@ -1,0 +1,12 @@
+{
+  "name":"integer-functions-v1",
+  "description":"Follow-up hypothesis from the mixed workload. Three new integer functions and held-out vectors. The original 100% acceptance threshold is retained.",
+  "strategy":"deduplicate",
+  "objective":"tokens",
+  "discovery":{"task":"Write only a Python function named inc returning its argument plus one.","evidence":[{"source":"D1","text":"The calling interface accepts and returns integers."},{"source":"D2","text":"The calling interface accepts and returns integers."}]},
+  "cases":[
+    {"workload":"code_generation","task":"Write only a Python function named square that returns its integer argument multiplied by itself. Use one return statement.","evidence":[{"source":"S1","text":"The interface accepts one integer and returns one integer. The input may have either sign."},{"source":"S2","text":"The interface accepts one integer and returns one integer. The input may have either sign."}],"check":{"method":"integer_function","expected":"{\"function\":\"square\",\"tests\":[{\"args\":[-3],\"returns\":9},{\"args\":[4],\"returns\":16},{\"args\":[0],\"returns\":0}]}"}},
+    {"workload":"code_generation","task":"Write only a Python function named subtract that returns its first integer argument minus its second. Use one return statement.","evidence":[{"source":"T1","text":"The interface takes two integers and returns one integer. Preserve the order of the supplied arguments."},{"source":"T2","text":"The interface takes two integers and returns one integer. Preserve the order of the supplied arguments."}],"check":{"method":"integer_function","expected":"{\"function\":\"subtract\",\"tests\":[{\"args\":[3,5],\"returns\":-2},{\"args\":[-2,-7],\"returns\":5},{\"args\":[9,9],\"returns\":0}]}"}},
+    {"workload":"code_generation","task":"Write only a Python function named triple that returns its integer argument multiplied by 3. Use one return statement.","evidence":[{"source":"U1","text":"The caller supplies a signed integer. The return value must be an integer for both positive and negative inputs."},{"source":"U2","text":"The caller supplies a signed integer. The return value must be an integer for both positive and negative inputs."}],"check":{"method":"integer_function","expected":"{\"function\":\"triple\",\"tests\":[{\"args\":[7],\"returns\":21},{\"args\":[-3],\"returns\":-9},{\"args\":[0],\"returns\":0}]}"}}
+  ]
+}

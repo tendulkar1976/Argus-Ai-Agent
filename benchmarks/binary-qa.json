@@ -1,0 +1,11 @@
+{
+  "name":"binary-qa-v1",
+  "description":"A separate one-token binary-answer workload. Positive and negative cases, exact case-sensitive Yes/No scoring. Report separately from the three-workload study.",
+  "strategy":"deduplicate",
+  "objective":"tokens",
+  "discovery":{"task":"Is the station closed? Answer Yes or No.","evidence":[{"source":"D1","text":"The station is closed."},{"source":"D2","text":"The station is closed."}]},
+  "cases":[
+    {"workload":"binary_qa","task":"Is the library open? Answer Yes or No.","evidence":[{"source":"A1","text":"The library is open today and visitors may enter through the south door."},{"source":"A2","text":"The library is open today and visitors may enter through the south door."}],"check":{"method":"exact","expected":"Yes"}},
+    {"workload":"binary_qa","task":"Is the gate unlocked? Answer Yes or No.","evidence":[{"source":"B1","text":"The gate is locked. Visitors must wait outside until the groundskeeper arrives."},{"source":"B2","text":"The gate is locked. Visitors must wait outside until the groundskeeper arrives."}],"check":{"method":"exact","expected":"No"}}
+  ]
+}
