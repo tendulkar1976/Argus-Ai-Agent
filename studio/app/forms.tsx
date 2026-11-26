@@ -359,6 +359,17 @@ export function Settings({ ws, api, act, refresh }: FormProps) {
     </>
   );
 }
+function compactTask(task: string) {
+  // Preserve quoted material, code, and structured multiline input verbatim.
+  if (/[`"“”{}<>\n]/.test(task)) return task;
+  const sentences = task.split(/(?<=[.!?])\s+/);
+  return sentences
+    .filter((sentence, i) => i === 0 || sentence !== sentences[i - 1])
+    .join(" ")
+    .replace(/^(?:(?:could you please|can you please|please)\s+)(?=(?:explain|list|summarize|describe|compare|write|give|translate|answer)\b)/i, "")
+    .replace(/^I would like you to\s+(?=\w)/i, "");
+}
+
 export function Composer({
   ws,
   api,
@@ -374,6 +385,10 @@ export function Composer({
 }) {
   const [model, setModel] = useState(ws.models[0]?.id || ""),
     [ev, setEv] = useState<Evidence[]>([]);
+  const [task, setTask] = useState("");
+  const [useShorter, setUseShorter] = useState(true);
+  const shorter = compactTask(task);
+  const estimate = (value: string) => Math.ceil(new TextEncoder().encode(value).length / 4);
   const selected = ws.models.find((m) => m.id === model);
   return (
     <form
@@ -387,7 +402,7 @@ export function Composer({
             "POST",
             {
               model,
-              messages: [{ role: "user", content: f.get("prompt") }],
+              messages: [{ role: "user", content: useShorter ? shorter : task }],
               evidence: ev,
               max_tokens: Number(f.get("max")),
               policy_id: f.get("policy") || null,
@@ -422,12 +437,22 @@ export function Composer({
       </div>
       <Field name="Task or question">
         <textarea
+          value={task}
+          onChange={(e) => setTask(e.target.value)}
           name="prompt"
           rows={4}
           required
           placeholder="What should the model do?"
         />
       </Field>
+      {task.trim() && (shorter !== task ? (
+        <section aria-label="Prompt optimization">
+          <strong>Shortened prompt</strong>
+          <p>{shorter}</p>
+          <p>Estimated task tokens: {estimate(task)} → {estimate(shorter)} ({estimate(task) - estimate(shorter)} saved if used).</p>
+          <label><input type="checkbox" checked={useShorter} onChange={(e) => setUseShorter(e.target.checked)} /> Send shortened prompt</label>
+        </section>
+      ) : <p>No automatic shortening found.</p>)}
       <EvidenceEditor value={ev} change={setEv} />
       <Field name="Execution policy">
         <select name="policy">
